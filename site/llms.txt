@@ -1,0 +1,25 @@
+# VeloPair
+
+> An open data standard for describing riders, bikes and riding styles, and the
+> compatibility between them. Four JSON objects (Rider, Ride Profile, Bike,
+> Compatibility) plus a Bundle container. Data only; scoring engines stay outside
+> the standard. Version 0.1.0-draft.
+
+## Documentation
+
+- [Specification](https://github.com/aydincan/velopair/blob/main/SPEC.md): the full spec, about ten pages
+- [Research](https://github.com/aydincan/velopair/blob/main/docs/RESEARCH.md): primary-source research behind the field selection
+- [Mappings](https://github.com/aydincan/velopair/blob/main/docs/MAPPINGS.md): correspondences to existing industry standards
+
+## Schemas (JSON Schema draft 2020-12)
+
+- [Rider](https://velopair.org/schemas/0.1/rider.schema.json)
+- [Ride Profile](https://velopair.org/schemas/0.1/ride-profile.schema.json)
+- [Bike](https://velopair.org/schemas/0.1/bike.schema.json)
+- [Compatibility](https://velopair.org/schemas/0.1/compatibility.schema.json)
+- [Bundle](https://velopair.org/schemas/0.1/bundle.schema.json)
+
+## Examples
+
+- [Endurance/gravel persona](https://github.com/aydincan/velopair/tree/main/examples/endurance-gravel)
+- [Fast-road persona](https://github.com/aydincan/velopair/tree/main/examples/fast-road)

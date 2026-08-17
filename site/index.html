@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeloPair, the open rider-bike compatibility standard</title>
+<meta name="description" content="VeloPair is a small open data standard: four JSON objects that describe a rider, how they ride, a bike, and how well the two match. CC-BY-4.0 spec, Apache-2.0 schemas.">
+<link rel="canonical" href="https://velopair.org/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VeloPair, the open rider-bike compatibility standard">
+<meta property="og:description" content="Four JSON objects that describe a rider, how they ride, a bike, and how well the two match. Any app can produce them. Any engine can score them.">
+<meta property="og:url" content="https://velopair.org/">
+<meta name="theme-color" content="#161D22">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='10' cy='16' r='7' fill='none' stroke='%235CBFB2' stroke-width='3'/%3E%3Ccircle cx='22' cy='16' r='7' fill='none' stroke='%23161D22' stroke-width='3'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "VeloPair",
+  "url": "https://velopair.org/",
+  "description": "An open data standard for describing riders, bikes and riding styles, and the compatibility between them.",
+  "sameAs": ["https://github.com/aydincan/velopair"]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAFAF7;
+    --ink: #161D22;
+    --slate: #5A6B78;
+    --line: #DDE2DE;
+    --celeste: #5CBFB2;
+    --celeste-ink: #23695F;
+    --panel: #10171C;
+    --panel-line: #263540;
+    --amber: #D9A55C;
+    --mist: #9AD6CC;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  a { color: var(--celeste-ink); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .15s; }
+  a:hover { border-bottom-color: var(--celeste-ink); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--celeste-ink); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+
+  header.top {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 22px 0 20px;
+  }
+  .wordmark { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.01em; color: var(--ink); border: none; }
+  .wordmark b { color: var(--celeste-ink); font-weight: 800; }
+  nav.top-nav { display: flex; gap: 26px; font-size: .92rem; font-weight: 500; }
+  nav.top-nav a { color: var(--ink); }
+  nav.top-nav a:hover { border-bottom-color: var(--ink); }
+
+  /* dimension-line section marker, like a geometry chart measure */
+  .dim { display: flex; align-items: flex-end; gap: 14px; margin: 72px 0 26px; }
+  .dim i { flex: 1; height: 8px; border-bottom: 1px solid var(--line); }
+  .dim i:first-child { border-left: 1px solid var(--line); }
+  .dim i:last-child { border-right: 1px solid var(--line); }
+  .dim span {
+    font-family: "IBM Plex Mono", monospace; font-size: .76rem; font-weight: 500;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--slate);
+    transform: translateY(9px); white-space: nowrap;
+  }
+
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding: 40px 0 8px; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace; font-size: .76rem; font-weight: 500;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--celeste-ink);
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-size: clamp(2.3rem, 4.8vw, 3.4rem); font-weight: 800; line-height: 1.04;
+    letter-spacing: -0.025em; margin-bottom: 20px;
+  }
+  .hero p.lede { color: var(--slate); font-size: 1.06rem; max-width: 44ch; margin-bottom: 30px; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 11px 20px; border-radius: 6px; font-weight: 700;
+    font-size: .95rem; border: 1.5px solid var(--ink); color: var(--ink);
+    transition: background .15s, color .15s;
+  }
+  .btn.primary { background: var(--ink); color: var(--paper); }
+  .btn.primary:hover { background: var(--celeste-ink); border-color: var(--celeste-ink); color: #fff; }
+  .btn:not(.primary):hover { background: var(--ink); color: var(--paper); border-bottom-color: var(--ink); }
+
+  .doc {
+    background: var(--panel); border: 1px solid var(--panel-line); border-radius: 10px;
+    padding: 22px 24px; overflow-x: auto;
+    font-family: "IBM Plex Mono", monospace; font-size: .8rem; line-height: 1.75;
+    color: #C6D0CD; box-shadow: 0 18px 44px -22px rgba(16,23,28,.45);
+  }
+  .doc .filetab {
+    font-size: .72rem; color: #7A8B87; letter-spacing: .08em;
+    border-bottom: 1px solid var(--panel-line); padding-bottom: 10px; margin-bottom: 12px;
+    display: flex; justify-content: space-between; gap: 12px;
+  }
+  .doc .filetab em { font-style: normal; color: var(--celeste); }
+  .doc pre { white-space: pre; }
+  .k { color: #E9EEEC; } .s { color: var(--mist); } .n { color: var(--amber); } .p { color: #6E8078; }
+  .hit {
+    display: inline-block; background: rgba(92,191,178,.16); border-left: 3px solid var(--celeste);
+    margin-left: -24px; padding-left: 21px; width: calc(100% + 48px);
+  }
+
+  .pipeline {
+    font-family: "IBM Plex Mono", monospace; font-size: .84rem; color: var(--slate);
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 4px 0 8px;
+  }
+  .pipeline .chip {
+    border: 1px solid var(--line); border-radius: 5px; padding: 4px 10px; color: var(--ink);
+    background: #fff;
+  }
+  .pipeline .score { border-color: var(--celeste); color: var(--celeste-ink); font-weight: 600; background: rgba(92,191,178,.1); }
+
+  table.objects { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  table.objects th {
+    text-align: left; font-family: "IBM Plex Mono", monospace; font-size: .72rem;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--slate); font-weight: 500;
+    padding: 0 16px 10px 0; border-bottom: 1px solid var(--line);
+  }
+  table.objects td { padding: 16px 16px 16px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.objects td.name { font-weight: 700; white-space: nowrap; }
+  table.objects td.what { color: var(--slate); max-width: 40ch; }
+  .fields { display: flex; flex-wrap: wrap; gap: 6px; }
+  .f {
+    font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--ink);
+    border: 1px solid var(--line); border-radius: 4px; padding: 2px 8px; background: #fff;
+  }
+
+  .principles { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 44px; }
+  .principle .tag {
+    font-family: "IBM Plex Mono", monospace; font-size: .74rem; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--celeste-ink); display: block; margin-bottom: 6px;
+  }
+  .principle p { color: var(--slate); font-size: .97rem; }
+  .principle p b { color: var(--ink); font-weight: 700; }
+
+  .start ol { list-style: none; counter-reset: step; max-width: 640px; }
+  .start li { counter-increment: step; display: flex; gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .start li::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--celeste-ink); padding-top: 3px;
+  }
+  .start code {
+    font-family: "IBM Plex Mono", monospace; font-size: .82rem; background: #fff;
+    border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px;
+  }
+  .curl {
+    margin-top: 22px; background: var(--panel); color: var(--mist); border-radius: 8px;
+    font-family: "IBM Plex Mono", monospace; font-size: .82rem; padding: 14px 18px; overflow-x: auto;
+  }
+  .curl b { color: #E9EEEC; font-weight: 500; }
+
+  footer { margin-top: 88px; border-top: 1px solid var(--line); padding: 26px 0 44px; color: var(--slate); font-size: .88rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+  @media (max-width: 880px) {
+    .hero { grid-template-columns: 1fr; gap: 34px; padding-top: 22px; }
+    .principles { grid-template-columns: 1fr; gap: 26px; }
+    table.objects td.what { display: none; }
+    .dim { margin-top: 56px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a class="wordmark" href="/">velo<b>pair</b></a>
+    <nav class="top-nav">
+      <a href="https://github.com/aydincan/velopair/blob/main/SPEC.md">Specification</a>
+      <a href="#schemas">Schemas</a>
+      <a href="https://github.com/aydincan/velopair">GitHub</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Open data standard &middot; v0.1.0-draft</p>
+      <h1>Riders and bikes, in a language any app can read.</h1>
+      <p class="lede">VeloPair is a small open standard: four JSON objects that describe a rider,
+      how they actually ride, a bike, and how well the two match. Any app can produce them.
+      Any engine can score them. The standard defines data, never scores.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://github.com/aydincan/velopair/blob/main/SPEC.md">Read the specification</a>
+        <a class="btn" href="https://github.com/aydincan/velopair">View on GitHub</a>
+      </div>
+    </div>
+    <div class="doc" role="img" aria-label="A VeloPair bundle document: rider, ride profile, bike, and a compatibility score of 91">
+      <div class="filetab"><span><em>velopair.json</em></span><span>valid &middot; bundle.schema.json</span></div>
+<pre><span class="p">{</span>
+  <span class="k">"rider"</span><span class="p">: {</span> <span class="k">"body"</span><span class="p">: {</span> <span class="k">"height_cm"</span><span class="p">:</span> <span class="n">178</span><span class="p">,</span> <span class="k">"inseam_cm"</span><span class="p">:</span> <span class="n">84</span> <span class="p">} },</span>
+  <span class="k">"ride_profile"</span><span class="p">: {</span> <span class="k">"surface_mix"</span><span class="p">: {</span> <span class="k">"gravel_pct"</span><span class="p">:</span> <span class="n">40</span> <span class="p">} },</span>
+  <span class="k">"bike"</span><span class="p">: {</span>
+    <span class="k">"identity"</span><span class="p">: {</span> <span class="k">"brand"</span><span class="p">:</span> <span class="s">"Example Cycles"</span><span class="p">,</span> <span class="k">"size"</span><span class="p">:</span> <span class="s">"56"</span> <span class="p">},</span>
+    <span class="k">"geometry"</span><span class="p">: {</span> <span class="k">"stack_mm"</span><span class="p">:</span> <span class="n">591</span><span class="p">,</span> <span class="k">"reach_mm"</span><span class="p">:</span> <span class="n">384</span> <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="k">"compatibility"</span><span class="p">: {</span>
+    <span class="k">"engine"</span><span class="p">: {</span> <span class="k">"name"</span><span class="p">:</span> <span class="s">"any-engine-you-like"</span> <span class="p">},</span>
+<span class="hit">    <span class="k">"score"</span><span class="p">:</span> <span class="n">91</span></span>
+  <span class="p">}</span>
+<span class="p">}</span></pre>
+    </div>
+  </section>
+
+  <div class="dim"><i></i><span>how it fits together</span><i></i></div>
+  <div class="pipeline">
+    <span class="chip">rider.json</span> <span>+</span>
+    <span class="chip">ride-profile.json</span> <span>+</span>
+    <span class="chip">bike.json</span> <span>&rarr;</span>
+    <span>compatibility engine (yours, theirs, anyone's)</span> <span>&rarr;</span>
+    <span class="chip score">match 91/100</span>
+  </div>
+
+  <div class="dim"><i></i><span>the four objects</span><i></i></div>
+  <table class="objects">
+    <thead><tr><th>Object</th><th>What it holds</th><th>Example fields</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="name">Rider</td>
+        <td class="what">Body measurements, physiology and intent. No name, no contact data, by design.</td>
+        <td><div class="fields"><span class="f">height_cm</span><span class="f">inseam_cm</span><span class="f">sit_bone_width_mm</span><span class="f">ftp_w</span><span class="f">flexibility</span></div></td>
+      </tr>
+      <tr>
+        <td class="name">Ride Profile</td>
+        <td class="what">How someone measurably rides, derived from recorded rides instead of a questionnaire.</td>
+        <td><div class="fields"><span class="f">typical_ride_distance_km</span><span class="f">avg_speed_kmh</span><span class="f">elevation_gain_m_per_km</span><span class="f">surface_mix</span></div></td>
+      </tr>
+      <tr>
+        <td class="name">Bike</td>
+        <td class="what">Product identity, instance identity and geometry, kept separable.</td>
+        <td><div class="fields"><span class="f">identity.gtin</span><span class="f">stack_mm</span><span class="f">reach_mm</span><span class="f">max_tire_width_mm</span><span class="f">battery_capacity_wh</span></div></td>
+      </tr>
+      <tr>
+        <td class="name">Compatibility</td>
+        <td class="what">One engine's verdict on one pairing. The record of a result, never the computation.</td>
+        <td><div class="fields"><span class="f">engine.name</span><span class="f">score</span><span class="f">confidence</span><span class="f">breakdown[]</span></div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="dim"><i></i><span>design principles</span><i></i></div>
+  <section class="principles">
+    <div class="principle"><span class="tag">data, not scores</span>
+      <p><b>The standard defines inputs and their meanings.</b> Different companies compute different scores from the same data. The standard stays neutral.</p></div>
+    <div class="principle"><span class="tag">extend, don't compete</span>
+      <p><b>Bike-side data corresponds to existing industry work</b> on bicycle product data and geometry. VeloPair is the missing rider and compatibility layer, not another bike database.</p></div>
+    <div class="principle"><span class="tag">small on purpose</span>
+      <p><b>Four objects, about ninety fields,</b> every unit in the field name. Metric only. Boring and interoperable, as a data standard should be.</p></div>
+    <div class="principle"><span class="tag">implementations first</span>
+      <p><b>Nothing is stable until proven.</b> Every feature stays a release candidate until at least one producer and one consumer implement it against real data.</p></div>
+  </section>
+
+  <div class="dim" id="schemas"><i></i><span>get started</span><i></i></div>
+  <section class="start">
+    <ol>
+      <li><div>Read <a href="https://github.com/aydincan/velopair/blob/main/SPEC.md">SPEC.md</a>, about ten pages, and the two worked <a href="https://github.com/aydincan/velopair/tree/main/examples">example personas</a>.</div></li>
+      <li><div>Validate against the JSON Schemas (draft 2020-12): <code>rider</code>, <code>ride-profile</code>, <code>bike</code>, <code>compatibility</code>, and the single-file <code>bundle</code>.</div></li>
+      <li><div>Exchange documents, or one <code>velopair.json</code> bundle per share. Unknown extensions are ignored, unknown fields are errors.</div></li>
+    </ol>
+    <div class="curl"><b>curl</b> https://velopair.org/schemas/0.1/bike.schema.json</div>
+  </section>
+
+</div>
+<footer>
+  <div class="wrap">
+    <span>Spec text CC-BY-4.0 &middot; schemas and examples Apache-2.0</span>
+    <span>Pre-1.0. Everything is a release candidate until one producer and one consumer prove it.</span>
+    <span><a href="https://github.com/aydincan/velopair">github.com/aydincan/velopair</a></span>
+  </div>
+</footer>
+</body>
+</html>
