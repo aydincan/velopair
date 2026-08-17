@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://velopair.org/schemas/0.1/ride-profile.schema.json",
+  "$comment": "DRAFT for developer review. Name: VeloPair (gate #1 closed 2026-08-17); attorney trademark clearance still pending.",
+  "title": "Ride Profile",
+  "description": "A rider's riding style, preferably derived from recorded rides rather than a questionnaire. The derivation block tells consumers how trustworthy the numbers are. All values are metric; units are part of the field name.",
+  "type": "object",
+  "required": [
+    "spec_version",
+    "derivation"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "spec_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.]+)?$",
+      "description": "Version of this specification the document conforms to.",
+      "examples": [
+        "0.1.0-draft"
+      ],
+      "maxLength": 32
+    },
+    "profile_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Opaque stable identifier chosen by the producing application (a UUID is recommended).",
+      "maxLength": 128
+    },
+    "rider_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "profile_id of the Rider this profile describes, when known.",
+      "maxLength": 128
+    },
+    "derivation": {
+      "type": "object",
+      "required": [
+        "method"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "measured",
+            "declared",
+            "mixed"
+          ],
+          "description": "'measured' means computed from recorded rides; 'declared' means the rider answered questions; 'mixed' combines both."
+        },
+        "ride_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of recorded rides the profile was derived from."
+        },
+        "window_days": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Length of the observation window ending at generated_at."
+        },
+        "generated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the profile was computed (RFC 3339)."
+        }
+      }
+    },
+    "volume": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "typical_ride_distance_km": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Median distance of a single ride."
+        },
+        "longest_ride_distance_km": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Longest single ride in the observation window."
+        },
+        "weekly_distance_km": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Mean distance per week over the observation window."
+        },
+        "rides_per_week": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Mean ride count per week over the observation window."
+        }
+      }
+    },
+    "pace": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "avg_speed_kmh": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 120,
+          "description": "Distance-weighted average moving speed across rides."
+        },
+        "typical_duration_min": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Median ride duration."
+        }
+      }
+    },
+    "terrain": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "elevation_gain_m_per_km": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Mean climbing per kilometre across rides: the rider's elevation appetite. Flat commuting sits near 2, rolling terrain near 8, mountain riding above 15."
+        }
+      }
+    },
+    "surface_mix": {
+      "type": "object",
+      "description": "Share of distance per surface class. Values should sum to approximately 100.",
+      "additionalProperties": false,
+      "properties": {
+        "paved_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "gravel_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "offroad_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Producer-specific data under reverse-domain keys. Consumers must ignore unknown extensions.",
+      "additionalProperties": true
+    }
+  }
+}

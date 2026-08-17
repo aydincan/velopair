@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://velopair.org/schemas/0.1/rider.schema.json",
+  "$comment": "DRAFT for developer review. Name: VeloPair (gate #1 closed 2026-08-17); attorney trademark clearance still pending. Field selection is backed by docs/RESEARCH.md section 4 (fields appearing in 2+ independent fitting systems).",
+  "title": "Rider",
+  "description": "Portable description of a rider: body measurements, physiology and riding intent. Contains no name and no contact data by design; identity stays with the producing application. All values are metric; units are part of the field name.",
+  "type": "object",
+  "required": [
+    "spec_version",
+    "body"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "spec_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.]+)?$",
+      "description": "Version of this specification the document conforms to.",
+      "examples": [
+        "0.1.0-draft"
+      ],
+      "maxLength": 32
+    },
+    "profile_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Opaque stable identifier chosen by the producing application (a UUID is recommended). Lets Compatibility objects reference this profile.",
+      "maxLength": 128
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When any value in this document last changed (RFC 3339)."
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "measured",
+        "self_reported",
+        "imported",
+        "mixed"
+      ],
+      "description": "How the values were obtained overall. 'measured' means instrumented (scale, scan, caliper); 'imported' means taken from another system (e.g. Apple Health, a FIT user_profile)."
+    },
+    "body": {
+      "type": "object",
+      "description": "Anthropometry. Every field here appears in at least two independent fitting systems (see docs/RESEARCH.md).",
+      "required": [
+        "height_cm"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "height_cm": {
+          "type": "number",
+          "minimum": 50,
+          "maximum": 250,
+          "description": "Standing height, barefoot."
+        },
+        "weight_kg": {
+          "type": "number",
+          "minimum": 20,
+          "maximum": 250,
+          "description": "Body weight."
+        },
+        "inseam_cm": {
+          "type": "number",
+          "minimum": 40,
+          "maximum": 130,
+          "description": "Crotch to floor, barefoot, standing. The single highest-leverage fit measurement: saddle-height formulas (0.883 x inseam BB-to-saddle, 1.09 x inseam pedal-to-saddle) and frame-size formulas key off it."
+        },
+        "torso_cm": {
+          "type": "number",
+          "minimum": 30,
+          "maximum": 100,
+          "description": "Sternal notch to crotch (trunk length)."
+        },
+        "arm_length_cm": {
+          "type": "number",
+          "minimum": 30,
+          "maximum": 100,
+          "description": "Acromion (shoulder bone tip) to closed fist."
+        },
+        "shoulder_width_cm": {
+          "type": "number",
+          "minimum": 25,
+          "maximum": 70,
+          "description": "Acromion to acromion. Drives handlebar width recommendations."
+        },
+        "sit_bone_width_mm": {
+          "type": "number",
+          "minimum": 70,
+          "maximum": 200,
+          "description": "Ischial tuberosity center-to-center distance. Drives saddle width."
+        },
+        "foot_length_cm": {
+          "type": "number",
+          "minimum": 15,
+          "maximum": 40,
+          "description": "Heel to longest toe."
+        },
+        "flexibility": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "description": "Overall flexibility, coarse by design: no cross-industry flexibility scale exists, so v0.1 standardizes only three buckets. Producers with structured mobility assessments map down to these."
+        }
+      }
+    },
+    "physiology": {
+      "type": "object",
+      "description": "Performance physiology, separated from body geometry because different consumers need different halves (a sizing engine needs body, a range estimator needs physiology).",
+      "additionalProperties": false,
+      "properties": {
+        "birth_year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2100,
+          "description": "Year of birth. Preferred over an age integer because it does not go stale."
+        },
+        "sex": {
+          "type": "string",
+          "enum": [
+            "female",
+            "male",
+            "other",
+            "unspecified"
+          ],
+          "description": "For physiological modelling only (heart-rate and power estimation)."
+        },
+        "resting_hr_bpm": {
+          "type": "integer",
+          "minimum": 25,
+          "maximum": 120,
+          "description": "Resting heart rate."
+        },
+        "max_hr_bpm": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 230,
+          "description": "Maximum heart rate."
+        },
+        "ftp_w": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 700,
+          "description": "Functional threshold power in watts."
+        }
+      }
+    },
+    "intent": {
+      "type": "object",
+      "description": "What the rider wants, as opposed to what they measurably do (that lives in the Ride Profile object).",
+      "additionalProperties": false,
+      "properties": {
+        "position_preference": {
+          "type": "string",
+          "enum": [
+            "aggressive",
+            "balanced",
+            "relaxed"
+          ],
+          "description": "Desired riding position. Consumers may map to stack-to-reach targets (race bikes cluster near STR 1.40, endurance at 1.50 and above)."
+        },
+        "primary_disciplines": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "road",
+              "gravel",
+              "mountain",
+              "city",
+              "commute",
+              "touring",
+              "cargo"
+            ]
+          },
+          "uniqueItems": true,
+          "description": "Disciplines the rider intends to ride, most important first.",
+          "maxItems": 7
+        }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Producer-specific data under reverse-domain keys, e.g. {\"com.example.app\": {...}}. Consumers must ignore unknown extensions.",
+      "additionalProperties": true
+    }
+  }
+}

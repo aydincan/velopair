@@ -1,0 +1,31 @@
+{
+  "spec_version": "0.1.0-draft",
+  "engine": {
+    "name": "example-match-engine",
+    "version": "0.1.0",
+    "url": "https://example.invalid/engine"
+  },
+  "computed_at": "2026-08-17T12:05:00Z",
+  "rider_ref": "c3a1f7e2-5b8d-4a06-9e21-7d54c2a90b11",
+  "ride_profile_ref": "9d0e6b31-2f47-4c58-8a3b-e1c9f0724d62",
+  "bike_ref": "5b7c2d90-14ae-4f63-b8d5-3a90c1e67f24",
+  "score": 91,
+  "confidence": 0.82,
+  "breakdown": [
+    {
+      "dimension": "size_fit",
+      "score": 94,
+      "note": "Stack 591 / reach 384 (STR 1.54) sits in the balanced-endurance window for 178 cm with 84 cm inseam."
+    },
+    {
+      "dimension": "use_case_fit",
+      "score": 92,
+      "note": "Measured 40% gravel share matches category; 45 mm clearance covers the measured surface mix."
+    },
+    {
+      "dimension": "position_fit",
+      "score": 86,
+      "note": "Balanced position preference met; stem could go 10 mm shorter given torso length."
+    }
+  ]
+}

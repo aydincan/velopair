@@ -1,0 +1,50 @@
+{
+  "spec_version": "0.1.0-draft",
+  "profile_id": "5b7c2d90-14ae-4f63-b8d5-3a90c1e67f24",
+  "identity": {
+    "brand": "Example Cycles",
+    "model": "Wanderer AL",
+    "year": 2025,
+    "size": "56",
+    "color": "moss green",
+    "mpn": "EC-WAL-56-MG",
+    "gtin": "4012345678901"
+  },
+  "instance": {
+    "frame_number": "WEX2025A10432",
+    "odometer_km": 3412
+  },
+  "category": "gravel",
+  "motor_assistance": "none",
+  "geometry": {
+    "stack_mm": 591,
+    "reach_mm": 384,
+    "seat_tube_length_mm": 560,
+    "seat_tube_angle_deg": 73.5,
+    "top_tube_length_mm": 565,
+    "head_tube_length_mm": 165,
+    "head_tube_angle_deg": 71.5,
+    "stem_length_mm": 90,
+    "handlebar_width_mm": 440,
+    "wheelbase_mm": 1036,
+    "standover_mm": 792,
+    "chainstay_length_mm": 425,
+    "fork_rake_mm": 50,
+    "bottom_bracket_drop_mm": 76,
+    "crank_length_mm": 172.5
+  },
+  "wheels_tires": {
+    "wheel_diameter_etrto_mm": 622,
+    "tire_width_mm": 40,
+    "max_tire_width_mm": 45,
+    "recommended_pressure_bar": 2.4
+  },
+  "drivetrain": {
+    "type": "derailleur",
+    "chainring_count": 1,
+    "cassette_speed_count": 11,
+    "chainring_teeth": [40],
+    "cassette_teeth": [11, 13, 15, 17, 19, 21, 24, 28, 32, 36, 42]
+  },
+  "weight_kg": 9.8
+}

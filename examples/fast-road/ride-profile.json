@@ -1,0 +1,29 @@
+{
+  "spec_version": "0.1.0-draft",
+  "profile_id": "1a5d8e42-6c93-4f07-b1e8-d4a7f2c60b95",
+  "rider_ref": "e8f4a2c6-7d19-4b30-a5c7-92e6b8d40f13",
+  "derivation": {
+    "method": "measured",
+    "ride_count": 89,
+    "window_days": 180,
+    "generated_at": "2026-08-17T12:00:00Z"
+  },
+  "volume": {
+    "typical_ride_distance_km": 68.0,
+    "longest_ride_distance_km": 162.0,
+    "weekly_distance_km": 210.0,
+    "rides_per_week": 3.5
+  },
+  "pace": {
+    "avg_speed_kmh": 29.6,
+    "typical_duration_min": 140
+  },
+  "terrain": {
+    "elevation_gain_m_per_km": 7.1
+  },
+  "surface_mix": {
+    "paved_pct": 98,
+    "gravel_pct": 2,
+    "offroad_pct": 0
+  }
+}

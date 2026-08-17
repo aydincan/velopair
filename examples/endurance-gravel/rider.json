@@ -1,0 +1,27 @@
+{
+  "spec_version": "0.1.0-draft",
+  "profile_id": "c3a1f7e2-5b8d-4a06-9e21-7d54c2a90b11",
+  "updated_at": "2026-08-17T12:00:00Z",
+  "source": "mixed",
+  "body": {
+    "height_cm": 178,
+    "weight_kg": 76.5,
+    "inseam_cm": 84,
+    "torso_cm": 61,
+    "arm_length_cm": 64,
+    "shoulder_width_cm": 41,
+    "sit_bone_width_mm": 121,
+    "flexibility": "medium"
+  },
+  "physiology": {
+    "birth_year": 1986,
+    "sex": "unspecified",
+    "resting_hr_bpm": 58,
+    "max_hr_bpm": 184,
+    "ftp_w": 205
+  },
+  "intent": {
+    "position_preference": "balanced",
+    "primary_disciplines": ["gravel", "touring"]
+  }
+}

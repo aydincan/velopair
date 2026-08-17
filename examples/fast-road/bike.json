@@ -1,0 +1,50 @@
+{
+  "spec_version": "0.1.0-draft",
+  "profile_id": "7f3b6a18-0c52-4d94-8e67-b5d21f80c439",
+  "identity": {
+    "brand": "Example Cycles",
+    "model": "Rapide CF",
+    "year": 2026,
+    "size": "58",
+    "color": "gloss black",
+    "mpn": "EC-RCF-58-GB",
+    "gtin": "4012345678925"
+  },
+  "instance": {
+    "frame_number": "RCF2026B00877",
+    "odometer_km": 1650
+  },
+  "category": "road",
+  "motor_assistance": "none",
+  "geometry": {
+    "stack_mm": 575,
+    "reach_mm": 400,
+    "seat_tube_length_mm": 545,
+    "seat_tube_angle_deg": 73.0,
+    "top_tube_length_mm": 577,
+    "head_tube_length_mm": 171,
+    "head_tube_angle_deg": 73.5,
+    "stem_length_mm": 110,
+    "handlebar_width_mm": 420,
+    "wheelbase_mm": 998,
+    "standover_mm": 815,
+    "chainstay_length_mm": 410,
+    "fork_rake_mm": 44,
+    "bottom_bracket_drop_mm": 72,
+    "crank_length_mm": 172.5
+  },
+  "wheels_tires": {
+    "wheel_diameter_etrto_mm": 622,
+    "tire_width_mm": 28,
+    "max_tire_width_mm": 32,
+    "recommended_pressure_bar": 5.5
+  },
+  "drivetrain": {
+    "type": "derailleur",
+    "chainring_count": 2,
+    "cassette_speed_count": 12,
+    "chainring_teeth": [52, 36],
+    "cassette_teeth": [11, 12, 13, 14, 15, 17, 19, 21, 24, 27, 30, 34]
+  },
+  "weight_kg": 7.4
+}

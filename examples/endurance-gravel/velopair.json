@@ -1,0 +1,140 @@
+{
+  "spec_version": "0.1.0-draft",
+  "rider": {
+    "spec_version": "0.1.0-draft",
+    "profile_id": "c3a1f7e2-5b8d-4a06-9e21-7d54c2a90b11",
+    "updated_at": "2026-08-17T12:00:00Z",
+    "source": "mixed",
+    "body": {
+      "height_cm": 178,
+      "weight_kg": 76.5,
+      "inseam_cm": 84,
+      "torso_cm": 61,
+      "arm_length_cm": 64,
+      "shoulder_width_cm": 41,
+      "sit_bone_width_mm": 121,
+      "flexibility": "medium"
+    },
+    "physiology": {
+      "birth_year": 1986,
+      "sex": "unspecified",
+      "resting_hr_bpm": 58,
+      "max_hr_bpm": 184,
+      "ftp_w": 205
+    },
+    "intent": {
+      "position_preference": "balanced",
+      "primary_disciplines": ["gravel", "touring"]
+    }
+  },
+  "ride_profile": {
+    "spec_version": "0.1.0-draft",
+    "profile_id": "9d0e6b31-2f47-4c58-8a3b-e1c9f0724d62",
+    "rider_ref": "c3a1f7e2-5b8d-4a06-9e21-7d54c2a90b11",
+    "derivation": {
+      "method": "measured",
+      "ride_count": 62,
+      "window_days": 180,
+      "generated_at": "2026-08-17T12:00:00Z"
+    },
+    "volume": {
+      "typical_ride_distance_km": 42.0,
+      "longest_ride_distance_km": 118.0,
+      "weekly_distance_km": 95.0,
+      "rides_per_week": 2.4
+    },
+    "pace": {
+      "avg_speed_kmh": 21.4,
+      "typical_duration_min": 118
+    },
+    "terrain": {
+      "elevation_gain_m_per_km": 9.4
+    },
+    "surface_mix": {
+      "paved_pct": 55,
+      "gravel_pct": 40,
+      "offroad_pct": 5
+    }
+  },
+  "bike": {
+    "spec_version": "0.1.0-draft",
+    "profile_id": "5b7c2d90-14ae-4f63-b8d5-3a90c1e67f24",
+    "identity": {
+      "brand": "Example Cycles",
+      "model": "Wanderer AL",
+      "year": 2025,
+      "size": "56",
+      "color": "moss green",
+      "mpn": "EC-WAL-56-MG",
+      "gtin": "4012345678901"
+    },
+    "instance": {
+      "frame_number": "WEX2025A10432",
+      "odometer_km": 3412
+    },
+    "category": "gravel",
+    "motor_assistance": "none",
+    "geometry": {
+      "stack_mm": 591,
+      "reach_mm": 384,
+      "seat_tube_length_mm": 560,
+      "seat_tube_angle_deg": 73.5,
+      "top_tube_length_mm": 565,
+      "head_tube_length_mm": 165,
+      "head_tube_angle_deg": 71.5,
+      "stem_length_mm": 90,
+      "handlebar_width_mm": 440,
+      "wheelbase_mm": 1036,
+      "standover_mm": 792,
+      "chainstay_length_mm": 425,
+      "fork_rake_mm": 50,
+      "bottom_bracket_drop_mm": 76,
+      "crank_length_mm": 172.5
+    },
+    "wheels_tires": {
+      "wheel_diameter_etrto_mm": 622,
+      "tire_width_mm": 40,
+      "max_tire_width_mm": 45,
+      "recommended_pressure_bar": 2.4
+    },
+    "drivetrain": {
+      "type": "derailleur",
+      "chainring_count": 1,
+      "cassette_speed_count": 11,
+      "chainring_teeth": [40],
+      "cassette_teeth": [11, 13, 15, 17, 19, 21, 24, 28, 32, 36, 42]
+    },
+    "weight_kg": 9.8
+  },
+  "compatibility": {
+    "spec_version": "0.1.0-draft",
+    "engine": {
+      "name": "example-match-engine",
+      "version": "0.1.0",
+      "url": "https://example.invalid/engine"
+    },
+    "computed_at": "2026-08-17T12:05:00Z",
+    "rider_ref": "c3a1f7e2-5b8d-4a06-9e21-7d54c2a90b11",
+    "ride_profile_ref": "9d0e6b31-2f47-4c58-8a3b-e1c9f0724d62",
+    "bike_ref": "5b7c2d90-14ae-4f63-b8d5-3a90c1e67f24",
+    "score": 91,
+    "confidence": 0.82,
+    "breakdown": [
+      {
+        "dimension": "size_fit",
+        "score": 94,
+        "note": "Stack 591 / reach 384 (STR 1.54) sits in the balanced-endurance window for 178 cm with 84 cm inseam."
+      },
+      {
+        "dimension": "use_case_fit",
+        "score": 92,
+        "note": "Measured 40% gravel share matches category; 45 mm clearance covers the measured surface mix."
+      },
+      {
+        "dimension": "position_fit",
+        "score": 86,
+        "note": "Balanced position preference met; stem could go 10 mm shorter given torso length."
+      }
+    ]
+  }
+}

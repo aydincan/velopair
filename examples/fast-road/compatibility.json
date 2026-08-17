@@ -1,0 +1,31 @@
+{
+  "spec_version": "0.1.0-draft",
+  "engine": {
+    "name": "example-match-engine",
+    "version": "0.1.0",
+    "url": "https://example.invalid/engine"
+  },
+  "computed_at": "2026-08-17T12:05:00Z",
+  "rider_ref": "e8f4a2c6-7d19-4b30-a5c7-92e6b8d40f13",
+  "ride_profile_ref": "1a5d8e42-6c93-4f07-b1e8-d4a7f2c60b95",
+  "bike_ref": "7f3b6a18-0c52-4d94-8e67-b5d21f80c439",
+  "score": 88,
+  "confidence": 0.9,
+  "breakdown": [
+    {
+      "dimension": "size_fit",
+      "score": 90,
+      "note": "58 with stack 575 / reach 400 suits 183 cm with 87 cm inseam; saddle height around 768 mm (0.883 x inseam) is well within seatpost range."
+    },
+    {
+      "dimension": "position_fit",
+      "score": 93,
+      "note": "STR 1.44 with high flexibility and aggressive preference is a strong pairing."
+    },
+    {
+      "dimension": "use_case_fit",
+      "score": 82,
+      "note": "98% paved at 29.6 km/h average matches a race platform; 32 mm max clearance limits the occasional gravel excursion."
+    }
+  ]
+}

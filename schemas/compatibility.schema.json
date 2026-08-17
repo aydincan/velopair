@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://velopair.org/schemas/0.1/compatibility.schema.json",
+  "$comment": "DRAFT for developer review. Name: VeloPair (gate #1 closed 2026-08-17); attorney trademark clearance still pending. This object records the OUTPUT of a scoring engine. The standard deliberately defines no scoring mathematics: engines compete on the same data (design principle 1), and scoring mechanisms are patent-encumbered territory (see docs/RESEARCH.md section 4, Giant US 11878214).",
+  "title": "Compatibility",
+  "description": "A match result: which engine looked at which rider, ride profile and bike, and what it concluded. Scores are engine-specific and comparable only within one engine and version.",
+  "type": "object",
+  "required": [
+    "spec_version",
+    "engine",
+    "score"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "spec_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.]+)?$",
+      "description": "Version of this specification the document conforms to.",
+      "examples": [
+        "0.1.0-draft"
+      ],
+      "maxLength": 32
+    },
+    "engine": {
+      "type": "object",
+      "description": "Who computed this. Mandatory: a score without an engine is meaningless under the data-not-score architecture.",
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "version": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 500
+        }
+      }
+    },
+    "computed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the score was computed (RFC 3339)."
+    },
+    "rider_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "profile_id of the Rider document used as input.",
+      "maxLength": 128
+    },
+    "ride_profile_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "profile_id of the Ride Profile document used as input.",
+      "maxLength": 128
+    },
+    "bike_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "profile_id of the Bike document used as input.",
+      "maxLength": 128
+    },
+    "score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Overall match score, 100 is best."
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "The engine's own confidence in the score, typically driven by input completeness."
+    },
+    "breakdown": {
+      "type": "array",
+      "description": "Optional per-dimension scores. Dimension names are engine-defined, not standardized.",
+      "items": {
+        "type": "object",
+        "required": [
+          "dimension",
+          "score"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "note": {
+            "type": "string",
+            "description": "Human-readable reasoning for this dimension.",
+            "maxLength": 2000
+          }
+        }
+      },
+      "maxItems": 50
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Engine-specific data under reverse-domain keys. Consumers must ignore unknown extensions.",
+      "additionalProperties": true
+    }
+  }
+}

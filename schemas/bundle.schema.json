@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://velopair.org/schemas/0.1/bundle.schema.json",
+  "$comment": "DRAFT for developer review. Name: VeloPair (gate #1 closed 2026-08-17); attorney trademark clearance still pending.",
+  "title": "Bundle",
+  "description": "A single-file container for exchanging related VeloPair documents together, for example one share-sheet export. Each member is a complete, standalone document of the referenced type (including its own spec_version). At least one member must be present.",
+  "type": "object",
+  "required": ["spec_version"],
+  "additionalProperties": false,
+  "properties": {
+    "spec_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.]+)?$",
+      "maxLength": 32,
+      "description": "Version of this specification the bundle conforms to.",
+      "examples": ["0.1.0-draft"]
+    },
+    "rider": { "$ref": "https://velopair.org/schemas/0.1/rider.schema.json" },
+    "ride_profile": { "$ref": "https://velopair.org/schemas/0.1/ride-profile.schema.json" },
+    "bike": { "$ref": "https://velopair.org/schemas/0.1/bike.schema.json" },
+    "compatibility": { "$ref": "https://velopair.org/schemas/0.1/compatibility.schema.json" },
+    "extensions": {
+      "type": "object",
+      "description": "Producer-specific data under reverse-domain keys. Consumers must ignore unknown extensions.",
+      "additionalProperties": true
+    }
+  },
+  "anyOf": [
+    { "required": ["rider"] },
+    { "required": ["ride_profile"] },
+    { "required": ["bike"] },
+    { "required": ["compatibility"] }
+  ]
+}

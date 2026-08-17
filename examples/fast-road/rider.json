@@ -1,0 +1,27 @@
+{
+  "spec_version": "0.1.0-draft",
+  "profile_id": "e8f4a2c6-7d19-4b30-a5c7-92e6b8d40f13",
+  "updated_at": "2026-08-17T12:00:00Z",
+  "source": "measured",
+  "body": {
+    "height_cm": 183,
+    "weight_kg": 71.0,
+    "inseam_cm": 87,
+    "torso_cm": 63,
+    "arm_length_cm": 66,
+    "shoulder_width_cm": 42,
+    "sit_bone_width_mm": 112,
+    "flexibility": "high"
+  },
+  "physiology": {
+    "birth_year": 1993,
+    "sex": "unspecified",
+    "resting_hr_bpm": 47,
+    "max_hr_bpm": 194,
+    "ftp_w": 290
+  },
+  "intent": {
+    "position_preference": "aggressive",
+    "primary_disciplines": ["road"]
+  }
+}

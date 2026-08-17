@@ -1,0 +1,372 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://velopair.org/schemas/0.1/bike.schema.json",
+  "$comment": "DRAFT for developer review. Name: VeloPair (gate #1 closed 2026-08-17); attorney trademark clearance still pending. Cross-references to industry catalogues (BIDEX, FIT, schema.org) live in docs/MAPPINGS.md, not in this file.",
+  "title": "Bike",
+  "description": "A bicycle, described at three separable levels: product identity (which model), instance identity (which physical bike), and physical properties (geometry, wheels, drivetrain). All values are metric; units are part of the field name.",
+  "type": "object",
+  "required": [
+    "spec_version",
+    "identity"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "spec_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.]+)?$",
+      "description": "Version of this specification the document conforms to.",
+      "examples": [
+        "0.1.0-draft"
+      ],
+      "maxLength": 32
+    },
+    "profile_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Opaque stable identifier chosen by the producing application (a UUID is recommended).",
+      "maxLength": 128
+    },
+    "identity": {
+      "type": "object",
+      "description": "Product-level identity, following industry convergence (BIDEX, Veloconnect, Google Merchant): GTIN where the manufacturer assigned one, else brand plus MPN, else the brand + model + year (+ size + color) composite. Never fabricate a GTIN.",
+      "required": [
+        "brand",
+        "model"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "brand": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2100,
+          "description": "Model year. Carryover models can keep one GTIN across years, so year is identity, not decoration."
+        },
+        "size": {
+          "type": "string",
+          "description": "Manufacturer size label as printed ('56', 'M', 'L56'). Not a measurement; measurements live in geometry.",
+          "maxLength": 32
+        },
+        "color": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "variant": {
+          "type": "string",
+          "description": "Manufacturer variant discriminator beyond size and color (build kit, motor option).",
+          "maxLength": 200
+        },
+        "gtin": {
+          "type": "string",
+          "pattern": "^\\d{8}(\\d{4,6})?$",
+          "description": "GS1 GTIN (8, 12, 13 or 14 digits) of this exact variant, if the manufacturer assigned one."
+        },
+        "mpn": {
+          "type": "string",
+          "description": "Manufacturer part number of this exact variant. Meaningful only together with brand.",
+          "maxLength": 100
+        }
+      }
+    },
+    "instance": {
+      "type": "object",
+      "description": "This physical bike, as opposed to the product. Sensitive: frame numbers identify property. Producers must only export this block on explicit rider action.",
+      "additionalProperties": false,
+      "properties": {
+        "frame_number": {
+          "type": "string",
+          "description": "Frame serial as engraved, opaque. No format standard exists (registries fuzzy-match O/0, S/5, L/1); do not validate, do not normalize.",
+          "maxLength": 64
+        },
+        "odometer_km": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Total distance this physical bike has been ridden."
+        }
+      }
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "road",
+        "gravel",
+        "mountain",
+        "city",
+        "trekking",
+        "folding",
+        "cargo",
+        "bmx",
+        "tandem",
+        "recumbent",
+        "other"
+      ],
+      "description": "Primary category as marketed."
+    },
+    "motor_assistance": {
+      "type": "string",
+      "enum": [
+        "none",
+        "pedelec",
+        "s_pedelec",
+        "other"
+      ],
+      "description": "'pedelec' assists to 25 km/h (EU), 's_pedelec' to 45 km/h."
+    },
+    "geometry": {
+      "type": "object",
+      "description": "Frame and cockpit geometry of this size. All fields optional because real-world data is partial; consumers must tolerate any subset.",
+      "additionalProperties": false,
+      "properties": {
+        "stack_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Vertical distance from bottom bracket center to the top of the head tube."
+        },
+        "reach_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Horizontal distance from bottom bracket center to the top of the head tube."
+        },
+        "seat_tube_length_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Bottom bracket center to the top of the seat tube, along the tube."
+        },
+        "seat_tube_angle_deg": {
+          "type": "number",
+          "minimum": 50,
+          "maximum": 90,
+          "description": "Effective seat tube angle from horizontal."
+        },
+        "top_tube_length_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Effective (horizontal) top tube length."
+        },
+        "head_tube_length_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Length of the head tube."
+        },
+        "head_tube_angle_deg": {
+          "type": "number",
+          "minimum": 50,
+          "maximum": 90,
+          "description": "Head tube angle from horizontal."
+        },
+        "stem_length_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Stem length as specced."
+        },
+        "stem_angle_deg": {
+          "type": "number",
+          "minimum": -60,
+          "maximum": 60,
+          "description": "Stem angle relative to the steerer axis."
+        },
+        "spacer_height_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Total spacer stack under the stem as specced."
+        },
+        "handlebar_width_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Handlebar width, center to center."
+        },
+        "handlebar_rise_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Handlebar rise above the clamp."
+        },
+        "handlebar_backsweep_deg": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 90,
+          "description": "Handlebar backsweep angle."
+        },
+        "wheelbase_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Distance between front and rear axles."
+        },
+        "standover_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Standover height above ground at the top tube."
+        },
+        "chainstay_length_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Bottom bracket center to rear axle."
+        },
+        "fork_rake_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Fork offset from the steering axis."
+        },
+        "fork_length_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Fork installation length, axle to crown."
+        },
+        "bottom_bracket_height_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Bottom bracket center height above ground."
+        },
+        "bottom_bracket_drop_mm": {
+          "type": "number",
+          "description": "Bottom bracket center depth below the axle line."
+        },
+        "crank_length_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Crank arm length."
+        },
+        "dropper_travel_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Dropper post travel."
+        },
+        "suspension_travel_front_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Front suspension travel."
+        },
+        "suspension_travel_rear_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Rear suspension travel."
+        }
+      }
+    },
+    "wheels_tires": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "wheel_diameter_etrto_mm": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 800,
+          "description": "ETRTO rim diameter (622 for 700c/29er, 584 for 650b/27.5, 559 for 26in)."
+        },
+        "tire_width_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "As specced or currently fitted."
+        },
+        "max_tire_width_mm": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Manufacturer-stated clearance."
+        },
+        "recommended_pressure_bar": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 12
+        }
+      }
+    },
+    "drivetrain": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "derailleur",
+            "hub_gear",
+            "singlespeed",
+            "other"
+          ]
+        },
+        "chainring_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "cassette_speed_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 14,
+          "description": "Rear speeds; with chainring_count gives the '2x12' style designation."
+        },
+        "chainring_teeth": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 10,
+            "maximum": 70
+          },
+          "description": "Largest first. Also present in FIT bike_profile.front_gear.",
+          "maxItems": 3
+        },
+        "cassette_teeth": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 8,
+            "maximum": 60
+          },
+          "description": "Smallest first. Also present in FIT bike_profile.rear_gear.",
+          "maxItems": 14
+        }
+      }
+    },
+    "weight_kg": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Complete bike weight as specced for this size."
+    },
+    "ebike": {
+      "type": "object",
+      "description": "Present only when motor_assistance is not 'none'.",
+      "additionalProperties": false,
+      "properties": {
+        "motor_position": {
+          "type": "string",
+          "enum": [
+            "front_hub",
+            "mid_drive",
+            "rear_hub"
+          ]
+        },
+        "motor_power_w": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Nominal (continuous rated) motor power."
+        },
+        "motor_torque_nm": {
+          "type": "number",
+          "minimum": 0
+        },
+        "battery_capacity_wh": {
+          "type": "number",
+          "minimum": 0
+        },
+        "claimed_range_km": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Manufacturer-claimed range; measured behaviour belongs to consumers, not this object."
+        }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Producer-specific data under reverse-domain keys. Consumers must ignore unknown extensions.",
+      "additionalProperties": true
+    }
+  }
+}

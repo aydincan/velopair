@@ -1,0 +1,8 @@
+# Local-only reference material (BIDEX PDF etc.: all rights reserved by their owners,
+# never publish). Session/tooling state.
+.local/
+.remember/
+.DS_Store
+
+# Internal working docs (session briefs, app internals, roadmap) stay local
+docs/internal/
