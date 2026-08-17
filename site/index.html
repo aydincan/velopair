@@ -125,6 +125,16 @@
   }
   .pipeline .score { border-color: var(--celeste); color: var(--celeste-ink); font-weight: 600; background: rgba(92,191,178,.1); }
 
+  table.gap { width: 100%; border-collapse: collapse; }
+  table.gap td { padding: 15px 0; border-bottom: 1px solid var(--line); vertical-align: baseline; }
+  table.gap td.count {
+    font-family: "IBM Plex Mono", monospace; font-size: 1.55rem; font-weight: 600;
+    width: 72px; color: var(--slate); text-align: left;
+  }
+  table.gap tr.zero td.count { color: var(--celeste-ink); }
+  table.gap td.fact { color: var(--slate); font-size: .97rem; max-width: 72ch; }
+  table.gap td.fact b { color: var(--ink); font-weight: 700; }
+
   table.objects { width: 100%; border-collapse: collapse; font-size: .95rem; }
   table.objects th {
     text-align: left; font-family: "IBM Plex Mono", monospace; font-size: .72rem;
@@ -224,6 +234,32 @@
     <span>compatibility engine (yours, theirs, anyone's)</span> <span>&rarr;</span>
     <span class="chip score">match 91/100</span>
   </div>
+
+  <div class="dim"><i></i><span>the gap this fills</span><i></i></div>
+  <table class="gap">
+    <tbody>
+      <tr class="zero">
+        <td class="count">0</td>
+        <td class="fact"><b>Open standards describe the rider, their riding style, or rider-bike compatibility.</b>
+        The slot VeloPair fills was empty. The <a href="https://github.com/aydincan/velopair/blob/main/docs/RESEARCH.md">primary-source research</a> checked three independent ways.</td>
+      </tr>
+      <tr>
+        <td class="count">~9</td>
+        <td class="fact"><b>Proprietary fitting and sizing systems match riders to bikes today.</b>
+        The demand is proven. The data stays locked inside each one.</td>
+      </tr>
+      <tr>
+        <td class="count">2</td>
+        <td class="fact"><b>Industry standards describe bicycle product data.</b>
+        VeloPair maps onto them instead of redefining geometry.</td>
+      </tr>
+      <tr>
+        <td class="count">3</td>
+        <td class="fact"><b>Activity formats record what happened during a ride.</b>
+        None carry a portable rider profile. The Ride Profile is the aggregate layer above them.</td>
+      </tr>
+    </tbody>
+  </table>
 
   <div class="dim"><i></i><span>the four objects</span><i></i></div>
   <table class="objects">

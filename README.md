@@ -28,6 +28,18 @@ RIDER.json  +  RIDE_PROFILE.json  +  BIKE.json
    independent implementations proving interoperability, then industry conversations.
    Formal standards bodies come last, not first.
 
+## The landscape (why this exists)
+
+Mapped before drafting; full citations in `docs/RESEARCH.md`:
+
+- **Zero** open standards describe the rider, their riding style, or rider-bike
+  compatibility. The slot was empty, checked three independent ways.
+- **About nine** proprietary fitting and sizing systems do this job behind closed
+  doors. Proven demand, locked data.
+- **Two** industry standards describe bicycle product data. VeloPair maps onto
+  them rather than redefining geometry.
+- **Three** activity formats record rides. None carry a portable rider profile.
+
 ## Planned deliverables
 
 | Deliverable | Where |

@@ -271,8 +271,10 @@ geometry and identity correspond to the BIDEX BikeData catalogue used in the Ger
 bicycle trade; rider physiology overlaps with fields in Garmin's FIT profile
 messages; product identifiers follow GS1 and schema.org practice. Activity formats
 (FIT, GPX, TCX) record individual rides and carry little or no rider identity; the
-Ride Profile is the aggregate layer above them. Field-level correspondences:
-`docs/MAPPINGS.md`. Primary-source research: `docs/RESEARCH.md`.
+Ride Profile is the aggregate layer above them. Prior to VeloPair, no open format
+described the rider, the riding style, or the rider-bike relationship; the
+primary-source survey behind that claim is in `docs/RESEARCH.md`. Field-level
+correspondences: `docs/MAPPINGS.md`.
 
 ## 13. Versioning
 
