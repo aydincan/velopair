@@ -105,7 +105,7 @@ export function match({ rider, bike, ride_profile = null }) {
 
   const score = Math.round(breakdown.reduce((a, d) => a + d.score, 0) / breakdown.length);
   const result = {
-    spec_version: "0.1.0-draft",
+    spec_version: "0.1.0",
     engine: ENGINE,
     computed_at: new Date().toISOString().replace(/\.\d{3}Z$/, "Z"),
     ...(rider.profile_id ? { rider_ref: rider.profile_id } : {}),

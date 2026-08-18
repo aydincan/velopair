@@ -17,7 +17,7 @@
       "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.]+)?$",
       "description": "Version of this specification the document conforms to.",
       "examples": [
-        "0.1.0-draft"
+        "0.1.0"
       ],
       "maxLength": 32
     },

@@ -1,6 +1,6 @@
 # VeloPair Specification
 
-**Version 0.1.0-draft** (not yet published)
+**Version 0.1.0**
 
 An open data standard for describing riders, bikes and riding styles, and the
 compatibility between them.
@@ -32,9 +32,11 @@ attestation or theft registries, and any personally identifying data.
 
 ## 2. Status
 
-Draft. Nothing in this document is stable. The whole specification is a release
-candidate until at least one producer and one consumer implement it against real
-data (see CONTRIBUTING.md).
+Version 0.1.0 has passed the release-candidate gate defined in CONTRIBUTING.md:
+at least one producer and one consumer implement it against real data. Pre-1.0
+semantics still apply: the specification can change, but breaking changes land
+only in MAJOR releases. New features enter as release candidates under the same
+one-producer-one-consumer rule.
 
 ## 3. Conformance and terminology
 
@@ -60,7 +62,7 @@ disagreement is a bug in this document.
   example a share-sheet export of rider plus ride profile plus bike); consumers
   SHOULD accept both single documents and Bundles.
 - Every document MUST carry `spec_version`, the version of this specification it
-  conforms to (for this draft: `"0.1.0-draft"`). Documents inside a Bundle stay
+  conforms to (currently `"0.1.0"`). Documents inside a Bundle stay
   complete and standalone, including their own `spec_version`.
 - Recommended file names: `rider.json`, `ride-profile.json`, `bike.json`,
   `compatibility.json`, and `velopair.json` for a Bundle, optionally prefixed by

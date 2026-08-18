@@ -14,7 +14,7 @@ for types rider, ride-profile, bike, compatibility, bundle.
 
 1. Metric only; the unit is part of the field name (`weight_kg`, `stack_mm`,
    `avg_speed_kmh`). Never write a value in another unit; convert first.
-2. Every document carries `spec_version` (currently `"0.1.0-draft"`).
+2. Every document carries `spec_version` (currently `"0.1.0"`).
 3. Unknown fields are ERRORS (`additionalProperties: false`) everywhere except
    inside `extensions`, which takes producer data under reverse-domain keys
    (`"com.example.app": {...}`).

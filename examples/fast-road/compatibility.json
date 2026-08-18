@@ -1,5 +1,5 @@
 {
-  "spec_version": "0.1.0-draft",
+  "spec_version": "0.1.0",
   "engine": {
     "name": "example-match-engine",
     "version": "0.1.0",

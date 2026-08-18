@@ -44,15 +44,18 @@ Mapped before drafting; full citations in `docs/RESEARCH.md`:
 
 This section lists only shipped, verifiable implementations.
 
+- **[Moofment](https://moofment.app)** (iOS), producer: exports a VeloPair bundle
+  (rider, measured ride profile, bike) from its Bike Passport as an explicit
+  share action.
 - **VeloPair MCP server** (`mcp/`), consumer: validates documents, provides
   authoring templates, and scores pairings with the open, non-normative
   `velopair-reference-engine`.
 - **VeloPair skill** (`skills/velopair/`): authoring and validation guidance for
   AI coding agents.
 
-Producers: none yet. The specification stays a release candidate until at least
-one producer and one consumer exist (see CONTRIBUTING.md). Building one? Open an
-issue.
+With one producer and one consumer implemented against real data, v0.1.0 has
+passed the release-candidate gate defined in CONTRIBUTING.md. Building an
+implementation? Open an issue.
 
 ## Licensing
 
@@ -62,8 +65,9 @@ rationale in `docs/RESEARCH.md` section 6.
 
 ## Status
 
-Pre-v0.1, nothing published yet. Name decided 2026-08-17 (VeloPair; former working
-name RideDNA, dropped after the collision check in `docs/RESEARCH.md` section 7).
-Research findings with primary-source citations: `docs/RESEARCH.md`. Draft schemas:
-`schemas/` (JSON Schema 2020-12), validated worked examples for the two founding
-personas: `examples/`.
+v0.1.0, published 2026-08-18, release-candidate gate passed (one producer, one
+consumer). Spec site: [velopair.org](https://velopair.org). Research findings
+with primary-source citations: `docs/RESEARCH.md`. Schemas: `schemas/` (JSON
+Schema 2020-12), validated worked examples for the two founding personas:
+`examples/`. Former working name RideDNA, dropped after the collision check in
+`docs/RESEARCH.md` section 7.

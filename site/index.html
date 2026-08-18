@@ -214,6 +214,9 @@
   }
   .curl b { color: #E9EEEC; font-weight: 500; }
 
+  p.impl { color: var(--slate); font-size: .97rem; max-width: 88ch; }
+  p.impl b a { color: var(--ink); }
+
   footer { margin-top: 88px; border-top: 1px solid var(--line); padding: 26px 0 44px; color: var(--slate); font-size: .88rem; }
   footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 
@@ -368,11 +371,18 @@
     <div class="curl"><b>curl</b> https://velopair.org/schemas/0.1/bike.schema.json</div>
   </section>
 
+  <div class="dim"><i></i><span>implementations</span><i></i></div>
+  <p class="impl"><b><a href="https://moofment.app">Moofment</a></b> (iOS) produces VeloPair
+  bundles: rider, measured ride profile and bike, exported from its Bike Passport in one
+  share. The <a href="https://github.com/aydincan/velopair/tree/main/mcp">open MCP server</a>
+  consumes them: validation, authoring templates, and the reference engine. One producer plus
+  one consumer is the release gate this standard sets for itself; v0.1.0 has passed it.</p>
+
 </div>
 <footer>
   <div class="wrap">
     <span>Spec text CC-BY-4.0 &middot; schemas and examples Apache-2.0</span>
-    <span>Pre-1.0. Everything is a release candidate until one producer and one consumer prove it.</span>
+    <span>v0.1.0, proven by one producer and one consumer. Breaking changes only in major versions.</span>
     <span><a href="https://github.com/aydincan/velopair">github.com/aydincan/velopair</a></span>
   </div>
 </footer>
@@ -454,7 +464,7 @@
     const stamp = new Date().toISOString().replace(/\.\d+Z$/, "Z");
     document.getElementById("results").innerHTML = results.map((x, idx) => {
       const comp = {
-        spec_version: "0.1.0-draft",
+        spec_version: "0.1.0",
         engine: { name: "velopair-reference-engine", version: "0.1.0", url: "https://github.com/aydincan/velopair" },
         computed_at: stamp, score: x.score, confidence: 1, breakdown: x.breakdown
       };
@@ -468,7 +478,7 @@
     }).join("");
 
     const rider = {
-      spec_version: "0.1.0-draft", source: "self_reported",
+      spec_version: "0.1.0", source: "self_reported",
       body: { height_cm: r.height, ...(r.inseam ? { inseam_cm: r.inseam } : {}), ...(r.flex ? { flexibility: r.flex } : {}) },
       intent: { position_preference: r.pos }
     };

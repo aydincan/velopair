@@ -13,7 +13,7 @@
       "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.]+)?$",
       "maxLength": 32,
       "description": "Version of this specification the bundle conforms to.",
-      "examples": ["0.1.0-draft"]
+      "examples": ["0.1.0"]
     },
     "rider": { "$ref": "https://velopair.org/schemas/0.1/rider.schema.json" },
     "ride_profile": { "$ref": "https://velopair.org/schemas/0.1/ride-profile.schema.json" },

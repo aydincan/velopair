@@ -43,7 +43,7 @@ export function validateDocument(doc, type) {
 
 export function template(type) {
   const stamp = new Date().toISOString().replace(/\.\d{3}Z$/, "Z");
-  const v = "0.1.0-draft";
+  const v = "0.1.0";
   switch (type) {
     case "rider":
       return { spec_version: v, source: "self_reported", body: { height_cm: 0 }, physiology: {}, intent: {} };

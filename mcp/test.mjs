@@ -25,10 +25,10 @@ ok(detectType(bundle) === "bundle", "detect bundle");
 ok(validateDocument(bundle).valid, "validate bundle");
 
 // 2. Invalid documents are rejected with pointed errors.
-const badRider = { spec_version: "0.1.0-draft", body: { height_cm: 178, weight_kg: -5 } };
+const badRider = { spec_version: "0.1.0", body: { height_cm: 178, weight_kg: -5 } };
 const badResult = validateDocument(badRider, "rider");
 ok(!badResult.valid && badResult.errors.some(e => e.includes("weight_kg")), "reject negative weight with field-level error");
-ok(!validateDocument({ spec_version: "0.1.0-draft" }, "bike").valid, "reject bike without identity");
+ok(!validateDocument({ spec_version: "0.1.0" }, "bike").valid, "reject bike without identity");
 
 // 3. Templates validate after filling the one required blank.
 const riderTpl = template("rider");
@@ -67,7 +67,7 @@ ok(crossed.score < matched.score, `cross-match scores lower (${crossed.score} < 
 
 // 6. Sparse input: engine degrades confidence instead of fabricating.
 const sparse = match({
-  rider: { spec_version: "0.1.0-draft", body: { height_cm: 178 } },
+  rider: { spec_version: "0.1.0", body: { height_cm: 178 } },
   bike: load("examples/endurance-gravel/bike.json")
 });
 ok(sparse.confidence < 1, `sparse input lowers confidence (${sparse.confidence})`);
@@ -76,13 +76,13 @@ ok(validateDocument(sparse, "compatibility").valid, "sparse result still validat
 // 7. Unscorable input fails loudly.
 let threw = false;
 try {
-  match({ rider: { spec_version: "0.1.0-draft", body: { height_cm: 178 } }, bike: { spec_version: "0.1.0-draft", identity: { brand: "X", model: "Y" } } });
+  match({ rider: { spec_version: "0.1.0", body: { height_cm: 178 } }, bike: { spec_version: "0.1.0", identity: { brand: "X", model: "Y" } } });
 } catch { threw = true; }
 ok(threw, "refuses to score when no dimension has data");
 
 // 8. A frame clearly too big for the rider scores size_fit low.
 const tooBig = match({
-  rider: { spec_version: "0.1.0-draft", body: { height_cm: 155, inseam_cm: 68 } },
+  rider: { spec_version: "0.1.0", body: { height_cm: 155, inseam_cm: 68 } },
   bike: load("examples/fast-road/bike.json")
 });
 const sizeDim = tooBig.breakdown.find(d => d.dimension === "size_fit");

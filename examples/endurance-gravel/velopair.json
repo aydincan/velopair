@@ -1,7 +1,7 @@
 {
-  "spec_version": "0.1.0-draft",
+  "spec_version": "0.1.0",
   "rider": {
-    "spec_version": "0.1.0-draft",
+    "spec_version": "0.1.0",
     "profile_id": "c3a1f7e2-5b8d-4a06-9e21-7d54c2a90b11",
     "updated_at": "2026-08-17T12:00:00Z",
     "source": "mixed",
@@ -28,7 +28,7 @@
     }
   },
   "ride_profile": {
-    "spec_version": "0.1.0-draft",
+    "spec_version": "0.1.0",
     "profile_id": "9d0e6b31-2f47-4c58-8a3b-e1c9f0724d62",
     "rider_ref": "c3a1f7e2-5b8d-4a06-9e21-7d54c2a90b11",
     "derivation": {
@@ -57,7 +57,7 @@
     }
   },
   "bike": {
-    "spec_version": "0.1.0-draft",
+    "spec_version": "0.1.0",
     "profile_id": "5b7c2d90-14ae-4f63-b8d5-3a90c1e67f24",
     "identity": {
       "brand": "Example Cycles",
@@ -107,7 +107,7 @@
     "weight_kg": 9.8
   },
   "compatibility": {
-    "spec_version": "0.1.0-draft",
+    "spec_version": "0.1.0",
     "engine": {
       "name": "example-match-engine",
       "version": "0.1.0",
