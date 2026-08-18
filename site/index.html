@@ -81,8 +81,8 @@
     margin-bottom: 18px;
   }
   h1 {
-    font-size: clamp(2.3rem, 4.8vw, 3.4rem); font-weight: 800; line-height: 1.04;
-    letter-spacing: -0.025em; margin-bottom: 20px;
+    font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 700; line-height: 1.06;
+    letter-spacing: -0.02em; margin-bottom: 20px;
   }
   .hero p.lede { color: var(--slate); font-size: 1.06rem; max-width: 44ch; margin-bottom: 30px; }
   .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
@@ -131,14 +131,19 @@
     text-transform: uppercase; color: var(--slate); margin-bottom: 6px;
   }
   .demo input, .demo select {
-    width: 100%; font-family: var(--font-mono); font-size: .9rem; color: var(--ink);
-    border: 1px solid var(--line); border-radius: 6px; padding: 9px 10px; background: var(--paper);
+    width: 100%; height: 42px; font-family: var(--font-mono); font-size: .9rem; color: var(--ink);
+    border: 1px solid var(--line); border-radius: 6px; padding: 0 10px; background: var(--paper);
+    appearance: none; -webkit-appearance: none;
+  }
+  .demo select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235A6B78' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px;
   }
   .demo input:focus, .demo select:focus { outline: 2px solid var(--celeste); outline-offset: 1px; }
   .demo .go {
     font-family: var(--font-sans); font-weight: 700; font-size: .92rem; cursor: pointer;
     border: 1.5px solid var(--ink); background: var(--ink); color: var(--paper);
-    border-radius: 6px; padding: 10px 18px;
+    border-radius: 6px; height: 42px; padding: 0 18px;
   }
   .demo .go:hover { background: var(--celeste-ink); border-color: var(--celeste-ink); }
   .demo .fine { font-size: .8rem; color: var(--slate); margin-top: 14px; max-width: 90ch; }
@@ -193,7 +198,7 @@
   .principle p { color: var(--slate); font-size: .97rem; }
   .principle p b { color: var(--ink); font-weight: 700; }
 
-  .start ol { list-style: none; counter-reset: step; max-width: 640px; }
+  .start ol { list-style: none; counter-reset: step; }
   .start li { counter-increment: step; display: flex; gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--line); }
   .start li::before {
     content: counter(step, decimal-leading-zero);
@@ -234,7 +239,7 @@
 
   <section class="hero">
     <div>
-      <p class="eyebrow">Open data standard &middot; v0.1.0-draft</p>
+      <p class="eyebrow">Open data standard &middot; v0.1</p>
       <h1>Riders and bikes, in a language any app can read.</h1>
       <p class="lede">VeloPair is a small open standard: four JSON objects that describe a rider,
       how they actually ride, a bike, and how well the two match. Any app can produce them.
@@ -357,7 +362,7 @@
   <section class="start">
     <ol>
       <li><div>Read <a href="https://github.com/aydincan/velopair/blob/main/SPEC.md">SPEC.md</a>, about ten pages, and the two worked <a href="https://github.com/aydincan/velopair/tree/main/examples">example personas</a>.</div></li>
-      <li><div>Validate against the JSON Schemas (draft 2020-12): <code>rider</code>, <code>ride-profile</code>, <code>bike</code>, <code>compatibility</code>, and the single-file <code>bundle</code>.</div></li>
+      <li><div>Validate against the JSON Schemas (2020-12 dialect): <code>rider</code>, <code>ride-profile</code>, <code>bike</code>, <code>compatibility</code>, and the single-file <code>bundle</code>.</div></li>
       <li><div>Exchange documents, or one <code>velopair.json</code> bundle per share. Unknown extensions are ignored, unknown fields are errors.</div></li>
     </ol>
     <div class="curl"><b>curl</b> https://velopair.org/schemas/0.1/bike.schema.json</div>
