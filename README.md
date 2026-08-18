@@ -40,15 +40,11 @@ Mapped before drafting; full citations in `docs/RESEARCH.md`:
   them rather than redefining geometry.
 - **Three** activity formats record rides. None carry a portable rider profile.
 
-## Planned deliverables
+## Implementations
 
-| Deliverable | Where |
-|---|---|
-| Specification v0.1 (`SPEC.md` + JSON Schemas + examples) | this repo, public on GitHub |
-| Implementation #1: a producing iOS app (rider + bike + measured ride profile export) | separate repo |
-| Implementation #2: MCP server (rider/bike profile tools, matching) | this repo |
-| Implementation #3: a skill for authoring/validating VeloPair files | this repo |
-| Spec site | velopair.org |
+None yet, deliberately: this section lists only shipped, verifiable producers and
+consumers, and the specification stays a release candidate until at least one of
+each exists (see CONTRIBUTING.md). Building one? Open an issue.
 
 ## Licensing
 
