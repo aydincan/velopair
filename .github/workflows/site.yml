@@ -24,6 +24,10 @@ jobs:
           node-version: 22
       - run: npm install --no-save ajv@8 ajv-formats@3
       - run: node scripts/validate.mjs
+      - run: npm ci --no-audit --no-fund
+        working-directory: mcp
+      - run: npm test
+        working-directory: mcp
 
   build:
     needs: validate
