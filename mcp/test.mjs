@@ -80,5 +80,13 @@ try {
 } catch { threw = true; }
 ok(threw, "refuses to score when no dimension has data");
 
+// 8. A frame clearly too big for the rider scores size_fit low.
+const tooBig = match({
+  rider: { spec_version: "0.1.0-draft", body: { height_cm: 155, inseam_cm: 68 } },
+  bike: load("examples/fast-road/bike.json")
+});
+const sizeDim = tooBig.breakdown.find(d => d.dimension === "size_fit");
+ok(sizeDim && sizeDim.score < 60, `oversized frame scores size_fit ${sizeDim?.score} (expected <60)`);
+
 console.log(failures === 0 ? "ALL PASS" : `${failures} FAILURES`);
 process.exit(failures === 0 ? 0 : 1);

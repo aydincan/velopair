@@ -22,11 +22,10 @@
   "sameAs": ["https://github.com/aydincan/velopair"]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
+    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
     --paper: #FAFAF7;
     --ink: #161D22;
     --slate: #5A6B78;
@@ -43,12 +42,12 @@
   body {
     background: var(--paper);
     color: var(--ink);
-    font-family: "Archivo", system-ui, sans-serif;
+    font-family: var(--font-sans);
     font-size: 17px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .mono { font-family: var(--font-mono); }
   a { color: var(--celeste-ink); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .15s; }
   a:hover { border-bottom-color: var(--celeste-ink); }
   a:focus-visible, button:focus-visible { outline: 2px solid var(--celeste-ink); outline-offset: 3px; border-radius: 2px; }
@@ -70,14 +69,14 @@
   .dim i:first-child { border-left: 1px solid var(--line); }
   .dim i:last-child { border-right: 1px solid var(--line); }
   .dim span {
-    font-family: "IBM Plex Mono", monospace; font-size: .76rem; font-weight: 500;
+    font-family: var(--font-mono); font-size: .76rem; font-weight: 500;
     letter-spacing: .16em; text-transform: uppercase; color: var(--slate);
     transform: translateY(9px); white-space: nowrap;
   }
 
   .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding: 40px 0 8px; }
   .eyebrow {
-    font-family: "IBM Plex Mono", monospace; font-size: .76rem; font-weight: 500;
+    font-family: var(--font-mono); font-size: .76rem; font-weight: 500;
     letter-spacing: .16em; text-transform: uppercase; color: var(--celeste-ink);
     margin-bottom: 18px;
   }
@@ -99,7 +98,7 @@
   .doc {
     background: var(--panel); border: 1px solid var(--panel-line); border-radius: 10px;
     padding: 22px 24px; overflow-x: auto;
-    font-family: "IBM Plex Mono", monospace; font-size: .8rem; line-height: 1.75;
+    font-family: var(--font-mono); font-size: .8rem; line-height: 1.75;
     color: #C6D0CD; box-shadow: 0 18px 44px -22px rgba(16,23,28,.45);
   }
   .doc .filetab {
@@ -116,7 +115,7 @@
   }
 
   .pipeline {
-    font-family: "IBM Plex Mono", monospace; font-size: .84rem; color: var(--slate);
+    font-family: var(--font-mono); font-size: .84rem; color: var(--slate);
     display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 4px 0 8px;
   }
   .pipeline .chip {
@@ -125,10 +124,46 @@
   }
   .pipeline .score { border-color: var(--celeste); color: var(--celeste-ink); font-weight: 600; background: rgba(92,191,178,.1); }
 
+  .demo { border: 1px solid var(--line); border-radius: 10px; padding: 24px; background: #fff; }
+  .demo form { display: grid; grid-template-columns: repeat(5, 1fr) auto; gap: 14px; align-items: end; }
+  .demo label {
+    display: block; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--slate); margin-bottom: 6px;
+  }
+  .demo input, .demo select {
+    width: 100%; font-family: var(--font-mono); font-size: .9rem; color: var(--ink);
+    border: 1px solid var(--line); border-radius: 6px; padding: 9px 10px; background: var(--paper);
+  }
+  .demo input:focus, .demo select:focus { outline: 2px solid var(--celeste); outline-offset: 1px; }
+  .demo .go {
+    font-family: var(--font-sans); font-weight: 700; font-size: .92rem; cursor: pointer;
+    border: 1.5px solid var(--ink); background: var(--ink); color: var(--paper);
+    border-radius: 6px; padding: 10px 18px;
+  }
+  .demo .go:hover { background: var(--celeste-ink); border-color: var(--celeste-ink); }
+  .demo .fine { font-size: .8rem; color: var(--slate); margin-top: 14px; max-width: 90ch; }
+  .result { display: grid; grid-template-columns: 88px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .result .num { font-family: var(--font-mono); font-size: 1.7rem; font-weight: 600; color: var(--slate); }
+  .result.top .num { color: var(--celeste-ink); }
+  .result h3 { font-size: 1rem; font-weight: 700; }
+  .szchip {
+    font-family: var(--font-mono); font-size: .7rem; font-weight: 500; color: var(--celeste-ink);
+    border: 1px solid var(--celeste); border-radius: 4px; padding: 1px 7px; margin-left: 8px; vertical-align: 2px;
+  }
+  .cat { font-family: var(--font-mono); font-size: .7rem; color: var(--slate); margin-left: 6px; text-transform: uppercase; letter-spacing: .08em; }
+  .result .why { color: var(--slate); font-size: .88rem; margin-top: 6px; max-width: 78ch; }
+  .result details { margin-top: 8px; }
+  .result summary { cursor: pointer; font-family: var(--font-mono); font-size: .74rem; color: var(--celeste-ink); }
+  .result pre {
+    background: #F2F4F1; border: 1px solid var(--line); border-radius: 6px; padding: 12px;
+    overflow-x: auto; font-family: var(--font-mono); font-size: .72rem; line-height: 1.6; margin-top: 8px;
+  }
+  @media (max-width: 880px) { .demo form { grid-template-columns: 1fr 1fr; } }
+
   table.gap { width: 100%; border-collapse: collapse; }
   table.gap td { padding: 15px 0; border-bottom: 1px solid var(--line); vertical-align: baseline; }
   table.gap td.count {
-    font-family: "IBM Plex Mono", monospace; font-size: 1.55rem; font-weight: 600;
+    font-family: var(--font-mono); font-size: 1.55rem; font-weight: 600;
     width: 72px; color: var(--slate); text-align: left;
   }
   table.gap tr.zero td.count { color: var(--celeste-ink); }
@@ -137,7 +172,7 @@
 
   table.objects { width: 100%; border-collapse: collapse; font-size: .95rem; }
   table.objects th {
-    text-align: left; font-family: "IBM Plex Mono", monospace; font-size: .72rem;
+    text-align: left; font-family: var(--font-mono); font-size: .72rem;
     letter-spacing: .12em; text-transform: uppercase; color: var(--slate); font-weight: 500;
     padding: 0 16px 10px 0; border-bottom: 1px solid var(--line);
   }
@@ -146,13 +181,13 @@
   table.objects td.what { color: var(--slate); max-width: 40ch; }
   .fields { display: flex; flex-wrap: wrap; gap: 6px; }
   .f {
-    font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--ink);
+    font-family: var(--font-mono); font-size: .72rem; color: var(--ink);
     border: 1px solid var(--line); border-radius: 4px; padding: 2px 8px; background: #fff;
   }
 
   .principles { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 44px; }
   .principle .tag {
-    font-family: "IBM Plex Mono", monospace; font-size: .74rem; font-weight: 600;
+    font-family: var(--font-mono); font-size: .74rem; font-weight: 600;
     letter-spacing: .14em; text-transform: uppercase; color: var(--celeste-ink); display: block; margin-bottom: 6px;
   }
   .principle p { color: var(--slate); font-size: .97rem; }
@@ -162,15 +197,15 @@
   .start li { counter-increment: step; display: flex; gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--line); }
   .start li::before {
     content: counter(step, decimal-leading-zero);
-    font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--celeste-ink); padding-top: 3px;
+    font-family: var(--font-mono); font-size: .8rem; color: var(--celeste-ink); padding-top: 3px;
   }
   .start code {
-    font-family: "IBM Plex Mono", monospace; font-size: .82rem; background: #fff;
+    font-family: var(--font-mono); font-size: .82rem; background: #fff;
     border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px;
   }
   .curl {
     margin-top: 22px; background: var(--panel); color: var(--mist); border-radius: 8px;
-    font-family: "IBM Plex Mono", monospace; font-size: .82rem; padding: 14px 18px; overflow-x: auto;
+    font-family: var(--font-mono); font-size: .82rem; padding: 14px 18px; overflow-x: auto;
   }
   .curl b { color: #E9EEEC; font-weight: 500; }
 
@@ -234,6 +269,24 @@
     <span>compatibility engine (yours, theirs, anyone's)</span> <span>&rarr;</span>
     <span class="chip score">match 91/100</span>
   </div>
+
+  <div class="dim"><i></i><span>try it</span><i></i></div>
+  <section class="demo">
+    <form id="matchForm">
+      <div><label for="h">Height cm</label><input id="h" type="number" inputmode="numeric" min="120" max="220" value="178" required></div>
+      <div><label for="i">Inseam cm</label><input id="i" type="number" inputmode="numeric" min="50" max="110" placeholder="optional"></div>
+      <div><label for="fx">Flexibility</label><select id="fx"><option value="">unknown</option><option>low</option><option selected>medium</option><option>high</option></select></div>
+      <div><label for="pp">Position</label><select id="pp"><option>aggressive</option><option selected>balanced</option><option>relaxed</option></select></div>
+      <div><label for="up">Unpaved %</label><input id="up" type="number" inputmode="numeric" min="0" max="100" value="20"></div>
+      <button class="go" type="submit">Score four bikes</button>
+    </form>
+    <div id="results" aria-live="polite"></div>
+    <p class="fine">Runs in your browser; nothing you enter is sent anywhere. Scores come from
+    velopair-reference-engine 0.1.0, the open, non-normative engine in the
+    <a href="https://github.com/aydincan/velopair/tree/main/mcp">spec repository</a>. Your inputs
+    form a valid Rider document and each result is a valid Compatibility document. The four bikes
+    are fictional. <a id="dlRider" href="#" download="rider.json">Download your rider.json</a></p>
+  </section>
 
   <div class="dim"><i></i><span>the gap this fills</span><i></i></div>
   <table class="gap">
@@ -318,5 +371,109 @@
     <span><a href="https://github.com/aydincan/velopair">github.com/aydincan/velopair</a></span>
   </div>
 </footer>
+<script>
+(() => {
+  // Browser build of velopair-reference-engine 0.1.0 (see mcp/engine.mjs in the
+  // repository; same heuristics, same windows). Sizes are [stack, reach, seat_tube] mm.
+  const BIKES = [
+    { model: "Rapide CF", category: "road", clearance: 32,
+      sizes: { "52": [517, 383, 500], "54": [536, 389, 515], "56": [555, 395, 530], "58": [575, 400, 545] } },
+    { model: "Wanderer AL", category: "gravel", clearance: 45,
+      sizes: { "52": [555, 370, 500], "54": [573, 377, 530], "56": [591, 384, 560], "58": [609, 391, 585] } },
+    { model: "Tourer ST", category: "trekking", clearance: 47,
+      sizes: { "50": [592, 352, 460], "54": [615, 362, 505], "58": [655, 375, 560] } },
+    { model: "Metro ONE", category: "city", clearance: 42,
+      sizes: { "S": [600, 350, 440], "M": [625, 360, 480], "L": [650, 370, 520] } }
+  ];
+  const WIN = { aggressive: [1.32, 1.48], balanced: [1.42, 1.60], relaxed: [1.52, 1.85] };
+  const clamp = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
+  const win = (v, lo, hi, f = 0.5) => {
+    if (v >= lo && v <= hi) return 100;
+    const w = (hi - lo) * f, d = v < lo ? lo - v : v - hi;
+    return clamp(100 * (1 - d / w), 0, 100);
+  };
+
+  function scoreSize(r, geo, cat, clearance) {
+    const [stack, reach, st] = geo;
+    const breakdown = [];
+    const reachScore = win(reach / r.height, 2.0, 2.35);
+    let saddle = 100;
+    if (r.inseam) {
+      const sh = r.inseam * 8.83, need = st + 30;
+      saddle = sh >= need ? 100 : clamp(100 * (1 - (need - sh) / 60), 0, 100);
+    }
+    breakdown.push({ dimension: "size_fit", score: Math.round(0.6 * reachScore + 0.4 * saddle),
+      note: `Reach ${reach} mm against ${r.height} cm height` +
+        (r.inseam ? `; saddle height ${(r.inseam * 8.83).toFixed(0)} mm vs seat tube ${st} mm.` : ".") });
+
+    const str = stack / reach;
+    let [lo, hi] = WIN[r.pos];
+    if (r.flex === "low") { lo += 0.04; hi += 0.06; }
+    if (r.flex === "high") { lo -= 0.04; }
+    breakdown.push({ dimension: "position_fit", score: Math.round(win(str, lo, hi)),
+      note: `Stack-to-reach ${str.toFixed(2)} vs ${r.pos} window ${lo.toFixed(2)} to ${hi.toFixed(2)}.` });
+
+    const un = r.unpaved;
+    let s;
+    if (cat === "road") s = win(un, 0, 10, 3);
+    else if (cat === "gravel") s = win(un, 5, 70, 1);
+    else if (cat === "mountain") s = win(un, 30, 100, 1);
+    else s = win(un, 0, 35, 1.5);
+    s = Math.round(s);
+    let note = `${un}% unpaved riding against category '${cat}'.`;
+    if (un > 15 && clearance < 35) { s = Math.round(s * 0.8); note += ` ${clearance} mm tire clearance is tight for that.`; }
+    breakdown.push({ dimension: "use_case_fit", score: s, note });
+
+    return { breakdown, score: Math.round(breakdown.reduce((a, d) => a + d.score, 0) / breakdown.length) };
+  }
+
+  function run() {
+    const r = {
+      height: +document.getElementById("h").value,
+      inseam: +document.getElementById("i").value || null,
+      flex: document.getElementById("fx").value || null,
+      pos: document.getElementById("pp").value,
+      unpaved: clamp(+document.getElementById("up").value || 0, 0, 100)
+    };
+    if (!r.height || r.height < 120 || r.height > 220) return;
+
+    const results = BIKES.map(b => {
+      let best = null;
+      for (const [label, geo] of Object.entries(b.sizes)) {
+        const s = scoreSize(r, geo, b.category, b.clearance);
+        if (!best || s.score > best.score) best = { size: label, ...s };
+      }
+      return { model: b.model, category: b.category, ...best };
+    }).sort((a, b) => b.score - a.score);
+
+    const stamp = new Date().toISOString().replace(/\.\d+Z$/, "Z");
+    document.getElementById("results").innerHTML = results.map((x, idx) => {
+      const comp = {
+        spec_version: "0.1.0-draft",
+        engine: { name: "velopair-reference-engine", version: "0.1.0", url: "https://github.com/aydincan/velopair" },
+        computed_at: stamp, score: x.score, confidence: 1, breakdown: x.breakdown
+      };
+      return `<div class="result${idx === 0 ? " top" : ""}">
+        <div class="num">${x.score}</div>
+        <div>
+          <h3>${x.model}<span class="szchip">size ${x.size}</span><span class="cat">${x.category}</span></h3>
+          <div class="why">${x.breakdown.map(d => d.note).join(" ")}</div>
+          <details><summary>compatibility.json</summary><pre>${JSON.stringify(comp, null, 2)}</pre></details>
+        </div></div>`;
+    }).join("");
+
+    const rider = {
+      spec_version: "0.1.0-draft", source: "self_reported",
+      body: { height_cm: r.height, ...(r.inseam ? { inseam_cm: r.inseam } : {}), ...(r.flex ? { flexibility: r.flex } : {}) },
+      intent: { position_preference: r.pos }
+    };
+    document.getElementById("dlRider").href =
+      "data:application/json;charset=utf-8," + encodeURIComponent(JSON.stringify(rider, null, 2) + "\n");
+  }
+
+  document.getElementById("matchForm").addEventListener("submit", e => { e.preventDefault(); run(); });
+  run();
+})();
+</script>
 </body>
 </html>

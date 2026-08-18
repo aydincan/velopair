@@ -49,8 +49,9 @@ export function match({ rider, bike, ride_profile = null }) {
     let saddleScore = 100;
     if (body.inseam_cm && geo.seat_tube_length_mm) {
       const saddleHeightMm = body.inseam_cm * 10 * 0.883;
-      saddleScore = saddleHeightMm >= geo.seat_tube_length_mm ? 100
-        : windowScore(saddleHeightMm, geo.seat_tube_length_mm, Infinity, 0.15);
+      const neededMm = geo.seat_tube_length_mm + 30; // minimum exposed seatpost
+      saddleScore = saddleHeightMm >= neededMm ? 100
+        : clamp(100 * (1 - (neededMm - saddleHeightMm) / 60), 0, 100);
     }
     const score = Math.round(0.6 * reachScore + 0.4 * saddleScore);
     breakdown.push({
