@@ -219,8 +219,31 @@
   }
   .curl b { color: #E9EEEC; font-weight: 500; }
 
-  p.impl { color: var(--slate); font-size: .97rem; max-width: 88ch; }
-  p.impl b a { color: var(--ink); }
+  .impl-row {
+    display: grid; grid-template-columns: 46px 1fr; gap: 18px; align-items: start;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .impl-icon { width: 46px; height: 46px; border-radius: 11px; display: block; }
+  .impl-mark {
+    width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 11px;
+    background: #fff; display: grid; place-items: center;
+  }
+  .impl-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .impl-head h3 { font-size: 1.05rem; font-weight: 700; }
+  .impl-head h3 a { color: var(--ink); }
+  .plat-icon { width: 13px; height: 13px; fill: var(--slate); }
+  .role {
+    font-family: var(--font-mono); font-size: .66rem; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--celeste-ink);
+    border: 1px solid var(--celeste); border-radius: 4px; padding: 2px 8px;
+  }
+  .impl-row p { color: var(--slate); font-size: .95rem; margin-top: 6px; }
+  .impl-row code {
+    font-family: var(--font-mono); font-size: .82rem; background: #fff;
+    border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px;
+  }
+  .gate { color: var(--slate); font-size: .95rem; margin-top: 20px; }
+  .gate b { color: var(--ink); font-weight: 700; }
 
   footer { margin-top: 88px; border-top: 1px solid var(--line); padding: 26px 0 44px; color: var(--slate); font-size: .88rem; }
   footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
@@ -386,11 +409,36 @@
   </section>
 
   <div class="dim"><i></i><span>implementations</span><i></i></div>
-  <p class="impl"><b><a href="https://moofment.app">Moofment</a></b> (iOS) produces VeloPair
-  bundles: rider, measured ride profile and bike, exported from its Bike Passport in one
-  share. The <a href="https://github.com/aydincan/velopair/tree/main/mcp">open MCP server</a>
-  consumes them: validation, authoring templates, and the reference engine. One producer plus
-  one consumer is the release gate this standard sets for itself; v0.1.0 has passed it.</p>
+
+  <div class="impl-row">
+    <img class="impl-icon" src="moofment-icon.png" alt="Moofment app icon" width="46" height="46" loading="lazy">
+    <div>
+      <div class="impl-head">
+        <h3><a href="https://moofment.app">Moofment</a></h3>
+        <svg class="plat-icon" viewBox="0 0 24 24" aria-hidden="true"><title>iPhone</title><path d="M16.365 1.43c0 1.14-.47 2.2-1.23 2.98-.8.84-2.05 1.48-3.13 1.4-.14-1.1.42-2.26 1.16-3.01.8-.83 2.15-1.44 3.2-1.37zM20.5 17.2c-.55 1.28-.82 1.85-1.53 2.98-.99 1.58-2.39 3.55-4.12 3.56-1.54.02-1.93-1-4.02-.99-2.09.01-2.52 1.01-4.06.99-1.73-.02-3.05-1.79-4.04-3.37C.06 16.1-.24 10.9 1.5 8.2c1.24-1.93 3.2-3.06 5.04-3.06 1.88 0 3.06 1.03 4.61 1.03 1.5 0 2.42-1.03 4.59-1.03 1.64 0 3.38.89 4.62 2.43-4.06 2.22-3.4 8.02.14 9.63z"/></svg>
+        <span class="role">producer</span>
+      </div>
+      <p>Exports a VeloPair bundle from its Bike Passport in one share: the rider, a ride
+      profile measured from recorded rides, and the bike.</p>
+    </div>
+  </div>
+
+  <div class="impl-row">
+    <span class="impl-mark" aria-hidden="true">
+      <svg width="30" height="18" viewBox="0 0 176 96"><circle cx="48" cy="48" r="42" fill="none" stroke="#5CBFB2" stroke-width="10"/><circle cx="128" cy="48" r="42" fill="none" stroke="#161D22" stroke-width="10"/></svg>
+    </span>
+    <div>
+      <div class="impl-head">
+        <h3><a href="https://github.com/aydincan/velopair/tree/main/mcp">VeloPair MCP server</a></h3>
+        <span class="role">consumer</span>
+      </div>
+      <p>Validates documents, hands out authoring templates, and scores pairings with the open,
+      non-normative reference engine. Install with <code>npx -y velopair</code>.</p>
+    </div>
+  </div>
+
+  <p class="gate"><b>One producer plus one consumer is the release gate this standard sets for
+  itself.</b> Version 0.1.0 has passed it.</p>
 
 </div>
 <footer>
