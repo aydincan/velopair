@@ -47,9 +47,10 @@ This section lists only shipped, verifiable implementations.
 - **[Moofment](https://moofment.app)** (iOS), producer: exports a VeloPair bundle
   (rider, measured ride profile, bike) from its Bike Passport as an explicit
   share action.
-- **VeloPair MCP server** (`mcp/`), consumer: validates documents, provides
-  authoring templates, and scores pairings with the open, non-normative
-  `velopair-reference-engine`.
+- **VeloPair MCP server** (`mcp/`, npm: [`velopair`](https://www.npmjs.com/package/velopair)),
+  consumer: validates documents, provides authoring templates, and scores
+  pairings with the open, non-normative `velopair-reference-engine`. Install:
+  `claude mcp add velopair -- npx -y velopair`.
 - **VeloPair skill** (`skills/velopair/`): authoring and validation guidance for
   AI coding agents.
 

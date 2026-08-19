@@ -13,17 +13,20 @@ The VeloPair standard defines data, never scoring. This engine exists so the
 ecosystem has one inspectable consumer to test against; its heuristics are
 classic static fit formulas and are documented in `engine.mjs`.
 
-## Run
+## Install
+
+From npm (recommended), registered in Claude Code with one line:
+
+```
+claude mcp add velopair -- npx -y velopair
+```
+
+From source:
 
 ```
 cd mcp && npm install
 node server.mjs           # stdio transport
-npm test                  # 34 checks over schemas, examples and the engine
-```
-
-Register in Claude Code:
-
-```
+npm test                  # 35 checks over schemas, examples and the engine
 claude mcp add velopair -- node /absolute/path/to/mcp/server.mjs
 ```
 
