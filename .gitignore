@@ -8,3 +8,4 @@
 docs/internal/
 mcp/schemas/
 mcp/*.tgz
+.playwright-mcp/
