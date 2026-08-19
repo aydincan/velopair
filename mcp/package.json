@@ -1,12 +1,27 @@
 {
-  "name": "velopair-mcp",
+  "name": "velopair",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
-  "description": "MCP server for validating, authoring and matching VeloPair documents",
+  "description": "MCP server for the VeloPair open rider-bike data standard: validate, author and match VeloPair documents",
+  "license": "Apache-2.0",
+  "homepage": "https://velopair.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aydincan/velopair.git",
+    "directory": "mcp"
+  },
+  "keywords": ["velopair", "mcp", "bicycle", "cycling", "json-schema", "bike-fitting"],
+  "bin": {
+    "velopair": "server.mjs"
+  },
+  "files": ["server.mjs", "lib.mjs", "engine.mjs", "schemas", "README.md"],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "start": "node server.mjs",
-    "test": "node test.mjs"
+    "test": "node test.mjs",
+    "prepublishOnly": "rm -rf schemas && cp -R ../schemas schemas && npm test"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.0",

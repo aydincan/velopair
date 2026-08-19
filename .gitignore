@@ -6,3 +6,5 @@
 
 # Internal working docs (session briefs, app internals, roadmap) stay local
 docs/internal/
+mcp/schemas/
+mcp/*.tgz

@@ -1,11 +1,13 @@
 // Schema loading, validation and document-type detection for VeloPair documents.
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
-import { readFileSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
-const SCHEMA_DIR = join(dirname(fileURLToPath(import.meta.url)), "..", "schemas");
+// Bundled copy when installed from npm; repo-level schemas/ in the source tree.
+const HERE = dirname(fileURLToPath(import.meta.url));
+const SCHEMA_DIR = existsSync(join(HERE, "schemas")) ? join(HERE, "schemas") : join(HERE, "..", "schemas");
 export const TYPES = ["rider", "ride-profile", "bike", "compatibility", "bundle"];
 const ID = t => `https://velopair.org/schemas/0.1/${t}.schema.json`;
 
