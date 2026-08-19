@@ -218,7 +218,15 @@
   p.impl b a { color: var(--ink); }
 
   footer { margin-top: 88px; border-top: 1px solid var(--line); padding: 26px 0 44px; color: var(--slate); font-size: .88rem; }
-  footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .ghbtn {
+    display: inline-flex; align-items: center; gap: 7px; border: 1.5px solid var(--ink);
+    border-radius: 6px; padding: 7px 14px; font-weight: 700; font-size: .85rem; color: var(--ink);
+    transition: background .15s, color .15s;
+  }
+  .ghbtn span { font-size: .8rem; transition: transform .15s; }
+  .ghbtn:hover { background: var(--ink); color: var(--paper); border-bottom-color: var(--ink); }
+  .ghbtn:hover span { transform: translate(1px, -1px); }
 
   @media (max-width: 880px) {
     .hero { grid-template-columns: 1fr; gap: 34px; padding-top: 22px; }
@@ -383,7 +391,7 @@
   <div class="wrap">
     <span>Spec text CC-BY-4.0 &middot; schemas and examples Apache-2.0</span>
     <span>v0.1.0, proven by one producer and one consumer. Breaking changes only in major versions.</span>
-    <span><a href="https://github.com/aydincan/velopair">github.com/aydincan/velopair</a></span>
+    <a class="ghbtn" href="https://github.com/aydincan/velopair" aria-label="VeloPair on GitHub">GitHub <span aria-hidden="true">&#8599;</span></a>
   </div>
 </footer>
 <script>
