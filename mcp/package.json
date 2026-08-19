@@ -1,8 +1,9 @@
 {
   "name": "velopair",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "MCP server for the VeloPair open rider-bike data standard: validate, author and match VeloPair documents",
+  "author": "VeloPair <hello@velopair.org> (https://velopair.org)",
   "license": "Apache-2.0",
   "homepage": "https://velopair.org",
   "repository": {
