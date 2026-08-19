@@ -2,29 +2,38 @@
 
 > An open data standard for describing riders, bikes and riding styles, and the
 > compatibility between them. Four JSON objects (Rider, Ride Profile, Bike,
-> Compatibility) plus a Bundle container. Data only; scoring engines stay outside
-> the standard. Version 0.1.0.
+> Compatibility) plus a Bundle container, about ninety fields, JSON Schema
+> 2020-12. The standard defines data only; scoring engines live outside it.
+> Version 0.1.0. Specification text CC-BY-4.0, schemas and examples Apache-2.0.
+
+Implementing VeloPair? Read [llms-full.txt](https://velopair.org/llms-full.txt):
+the entire standard, all five schemas and a worked example in one file.
+
+## Core
+
+- [Specification](https://velopair.org/spec.md): the full spec in markdown, about ten pages
+- [Authoring rules](https://velopair.org/skill.md): condensed rules, common mistakes, field reference
+- [Agent instructions](https://velopair.org/agents.md): how to work on the standard itself
+
+## Schemas (JSON Schema 2020-12, resolvable at their $id)
+
+- [rider](https://velopair.org/schemas/0.1/rider.schema.json): body measurements, physiology, intent. Requires body.height_cm
+- [ride-profile](https://velopair.org/schemas/0.1/ride-profile.schema.json): measured riding style. Requires derivation.method
+- [bike](https://velopair.org/schemas/0.1/bike.schema.json): product identity, instance identity, geometry. Requires identity.brand and identity.model
+- [compatibility](https://velopair.org/schemas/0.1/compatibility.schema.json): one engine's verdict on one pairing. Requires engine.name and score
+- [bundle](https://velopair.org/schemas/0.1/bundle.schema.json): single-file container, at least one member
 
 ## Tools
 
-- npm package [`velopair`](https://www.npmjs.com/package/velopair): MCP server (validate, author, match). Install: `claude mcp add velopair -- npx -y velopair`
-- [Skill for AI coding agents](https://github.com/aydincan/velopair/tree/main/skills/velopair)
-
-## Documentation
-
-- [Specification](https://github.com/aydincan/velopair/blob/main/SPEC.md): the full spec, about ten pages
-- [Research](https://github.com/aydincan/velopair/blob/main/docs/RESEARCH.md): primary-source research behind the field selection
-- [Mappings](https://github.com/aydincan/velopair/blob/main/docs/MAPPINGS.md): correspondences to existing industry standards
-
-## Schemas (JSON Schema draft 2020-12)
-
-- [Rider](https://velopair.org/schemas/0.1/rider.schema.json)
-- [Ride Profile](https://velopair.org/schemas/0.1/ride-profile.schema.json)
-- [Bike](https://velopair.org/schemas/0.1/bike.schema.json)
-- [Compatibility](https://velopair.org/schemas/0.1/compatibility.schema.json)
-- [Bundle](https://velopair.org/schemas/0.1/bundle.schema.json)
+- npm [`velopair`](https://www.npmjs.com/package/velopair): MCP server with velopair_validate, velopair_template and velopair_match. Install with `claude mcp add velopair -- npx -y velopair`
+- [Skill for coding agents](https://github.com/aydincan/velopair/tree/main/skills/velopair)
 
 ## Examples
 
-- [Endurance/gravel persona](https://github.com/aydincan/velopair/tree/main/examples/endurance-gravel)
-- [Fast-road persona](https://github.com/aydincan/velopair/tree/main/examples/fast-road)
+- [Endurance/gravel persona](https://velopair.org/examples/endurance-gravel/): rider, ride profile, bike, compatibility, and a bundle
+- [Fast-road persona](https://velopair.org/examples/fast-road/)
+
+## Optional
+
+- [Research](https://github.com/aydincan/velopair/blob/main/docs/RESEARCH.md): primary sources behind the field selection
+- [Mappings](https://github.com/aydincan/velopair/blob/main/docs/MAPPINGS.md): correspondences to BIDEX, FIT, GS1 and schema.org

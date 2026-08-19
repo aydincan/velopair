@@ -17,14 +17,39 @@
 <meta name="twitter:image" content="https://velopair.org/og.png">
 <meta name="theme-color" content="#161D22">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='10' cy='16' r='7' fill='none' stroke='%235CBFB2' stroke-width='3'/%3E%3Ccircle cx='22' cy='16' r='7' fill='none' stroke='%23161D22' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="alternate" type="text/markdown" href="https://velopair.org/spec.md" title="VeloPair specification in markdown">
+<link rel="alternate" type="text/plain" href="https://velopair.org/llms-full.txt" title="Complete standard in one file">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "VeloPair",
-  "url": "https://velopair.org/",
-  "description": "An open data standard for describing riders, bikes and riding styles, and the compatibility between them.",
-  "sameAs": ["https://github.com/aydincan/velopair"]
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://velopair.org/#site",
+      "name": "VeloPair",
+      "url": "https://velopair.org/",
+      "description": "An open data standard for describing riders, bikes and riding styles, and the compatibility between them.",
+      "sameAs": ["https://github.com/aydincan/velopair", "https://www.npmjs.com/package/velopair"]
+    },
+    {
+      "@type": "TechArticle",
+      "name": "VeloPair Specification 0.1.0",
+      "url": "https://velopair.org/spec.md",
+      "version": "0.1.0",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "abstract": "Four JSON objects (Rider, Ride Profile, Bike, Compatibility) plus a Bundle container describe a rider, how they measurably ride, a bike, and how well the two match. The standard defines data only; scoring engines are external.",
+      "keywords": "bicycle, cycling, bike fitting, rider profile, bike geometry, JSON Schema, open standard, interoperability",
+      "isPartOf": { "@id": "https://velopair.org/#site" }
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "velopair",
+      "codeRepository": "https://github.com/aydincan/velopair",
+      "programmingLanguage": "JavaScript",
+      "license": "https://www.apache.org/licenses/LICENSE-2.0",
+      "description": "MCP server for VeloPair: validate documents, author from templates, score pairings with the open reference engine."
+    }
+  ]
 }
 </script>
 <style>
@@ -406,6 +431,12 @@
     </ol>
     <div class="curl"><b>curl</b> https://velopair.org/schemas/0.1/bike.schema.json</div>
     <div class="curl"><b>claude</b> mcp add velopair -- npx -y velopair</div>
+    <p class="fine">Implementing with an AI assistant? Point it at
+    <a href="/llms-full.txt">velopair.org/llms-full.txt</a>: the specification, all five
+    schemas and a worked example in one file, enough to write a conforming producer or
+    consumer without reading anything else. The spec alone lives at
+    <a href="/spec.md">/spec.md</a>, the condensed authoring rules at
+    <a href="/skill.md">/skill.md</a>.</p>
   </section>
 
   <div class="dim"><i></i><span>implementations</span><i></i></div>

@@ -34,11 +34,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
       - name: Assemble site
         run: |
+          node scripts/build-llms.mjs
           mkdir -p _site/schemas/0.1 _site/examples
           cp -R site/. _site/
           rm -f _site/og-source.html
+          cp SPEC.md _site/spec.md
+          cp skills/velopair/SKILL.md _site/skill.md
+          cp AGENTS.md _site/agents.md
           cp schemas/*.schema.json _site/schemas/0.1/
           cp -R examples/endurance-gravel examples/fast-road _site/examples/
       - uses: actions/upload-pages-artifact@v3

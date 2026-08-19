@@ -9,3 +9,7 @@ docs/internal/
 mcp/schemas/
 mcp/*.tgz
 .playwright-mcp/
+site/llms-full.txt
+
+# Dependencies
+node_modules/
