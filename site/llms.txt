@@ -5,6 +5,11 @@
 > Compatibility) plus a Bundle container. Data only; scoring engines stay outside
 > the standard. Version 0.1.0.
 
+## Tools
+
+- npm package [`velopair`](https://www.npmjs.com/package/velopair): MCP server (validate, author, match). Install: `claude mcp add velopair -- npx -y velopair`
+- [Skill for AI coding agents](https://github.com/aydincan/velopair/tree/main/skills/velopair)
+
 ## Documentation
 
 - [Specification](https://github.com/aydincan/velopair/blob/main/SPEC.md): the full spec, about ten pages

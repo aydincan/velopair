@@ -37,7 +37,7 @@ jobs:
       - name: Assemble site
         run: |
           mkdir -p _site/schemas/0.1 _site/examples
-          cp site/index.html site/robots.txt site/sitemap.xml site/llms.txt _site/
+          cp site/index.html site/robots.txt site/sitemap.xml site/llms.txt site/og.png _site/
           cp schemas/*.schema.json _site/schemas/0.1/
           cp -R examples/endurance-gravel examples/fast-road _site/examples/
       - uses: actions/upload-pages-artifact@v3
